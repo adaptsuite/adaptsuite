@@ -1,4 +1,4 @@
-package org.intellitesting.model;
+package org.intellitesting.suite;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
@@ -7,6 +7,9 @@ import java.util.Queue;
 
 import junit.framework.TestSuite;
 
+import org.intellitesting.adapter.IntelliTestAdapter;
+import org.intellitesting.adapter.IntelliTestAdapters;
+import org.intellitesting.adapter.Level;
 import org.intellitesting.prop.IntelliProperties;
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
@@ -41,9 +44,10 @@ public final class IntelliSuiteBuilder {
 
 	public TestSuite suite() {
 		IntelliProperties propertiesManager = new IntelliProperties();
-		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? runtimeLevel.toString(): "ALL";
-		List<Level> levels = propertiesManager.getLevelsUpTo(runtimeLevel);
-		TestSuite suite = new TestSuite("AllTests - Level - " + runtimeDescription);
+		List<Level> levels = propertiesManager.getLevelsUpTo(runtimeLevel);		
+		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? levels.get(runtimeLevel-1).getDescription(): "ALL";
+		
+		TestSuite suite = new TestSuite("IntelliSuite - Level: " + runtimeDescription);
 		for (Level level : levels) {
 			Long remaining = level.getDuration();
 			while (true) {

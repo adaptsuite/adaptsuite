@@ -1,4 +1,4 @@
-package org.intellitesting.model;
+package org.intellitesting.adapter;
 
 import org.intellitesting.prop.TestProperties;
 

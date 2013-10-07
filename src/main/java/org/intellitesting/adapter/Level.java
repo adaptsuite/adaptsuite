@@ -1,12 +1,12 @@
-package org.intellitesting.model;
+package org.intellitesting.adapter;
 
 public class Level {
 
-	private String description;
 	private Long duration;
+	private String description;
 
-	public Level(String description, String durationProp) {
-		this.description = description;
+	public Level(String durationProp) {
+		this.description = durationProp;
 		this.duration = toMiliseconds(durationProp);
 	}
 
@@ -25,6 +25,10 @@ public class Level {
 	
 	public Long getDuration() {
 		return duration;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 }

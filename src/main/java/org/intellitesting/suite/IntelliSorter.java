@@ -1,6 +1,8 @@
-package org.intellitesting.model;
+package org.intellitesting.suite;
 
 import java.util.Comparator;
+
+import org.intellitesting.adapter.IntelliTestAdapter;
 
 public class IntelliSorter implements Comparator<IntelliTestAdapter>{	
 

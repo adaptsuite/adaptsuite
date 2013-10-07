@@ -1,12 +1,15 @@
 package org.intellitesting.prop;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.intellitesting.model.Level;
+import org.intellitesting.adapter.Level;
 
 public class IntelliProperties {	
 
@@ -14,8 +17,12 @@ public class IntelliProperties {
 
 	public IntelliProperties() {
 		properties = new Properties();
-		InputStream input = this.getClass().getResourceAsStream("/intellitesting.properties");
+		String resourceName = "/intellitesting.properties";
+		URL resource = getClass().getResource(resourceName);
+		if(resource == null)
+			throw new IllegalStateException("Resource \"" + resourceName + "\" not found!");
 		try {
+			InputStream input = getClass().getResourceAsStream(resourceName);			
 			properties.load(input);
 			input.close();
 		} catch (IOException e) {
@@ -23,12 +30,11 @@ public class IntelliProperties {
 		}
 	}
 
-	public List<Level> getLevelsUpTo(Integer runtimeLevel) {		
-		String[] levelProps = get("intellitesting.levels").split(",");
+	public List<Level> getLevelsUpTo(Integer runtimeLevel) {
 		String[] durationProps = get("intellitesting.durations").split(",");		
 		List<Level> levels = new ArrayList<Level>();
-		for(int i = 0; i <= Math.min(levelProps.length-1, runtimeLevel-1); i++){			
-			levels.add(new Level(levelProps[i],durationProps[i]));
+		for(int i = 0; i <= Math.min(durationProps.length-1, runtimeLevel-1); i++){			
+			levels.add(new Level(durationProps[i]));
 		}
 		return levels;
 	}
