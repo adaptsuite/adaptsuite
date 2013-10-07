@@ -1,15 +1,16 @@
-package br.com.intellitesting.main;
+package br.com.intellitesting.model;
 
+import br.com.intellitesting.prop.TestProperties;
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;
 
 public class IntelliTestAdapter extends JUnit4TestAdapter{
 
-	private PropertiesManager propertiesManager;
+	private TestProperties propertiesManager;
 
 	public IntelliTestAdapter(Class<?> newTestClass) {
 		super(newTestClass);
-		propertiesManager = PropertiesManager.newInstance(newTestClass);
+		propertiesManager = TestProperties.newInstance(newTestClass);
 	}
 	
 	public void run(TestResult result) {

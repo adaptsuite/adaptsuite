@@ -1,4 +1,4 @@
-package br.com.intellitesting.main;
+package br.com.intellitesting.model;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -12,25 +12,23 @@ import junit.framework.TestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
 
+import br.com.intellitesting.main.TestCase1;
+import br.com.intellitesting.main.TestCase2;
+import br.com.intellitesting.main.TestCase3;
+import br.com.intellitesting.prop.IntelliProperties;
+
 @RunWith(AllTests.class)
 public final class IntelliTestSuite {
 	
-	private static Integer level = 3;
+	private	static Integer runtimeLevel = 2;
 	
-	public static TestSuite suite() {
-		PropertiesManager propertiesManager = PropertiesManager.newInstance();
-		Queue<IntelliTestAdapter> tests = getTests();		
-		String[] levels = propertiesManager.get("intellitesting.levels").split(",");
-		String[] timings = propertiesManager.get("intellitesting.timings").split(",");
-		Long[] expected = new Long[timings.length];
-		for(int i = 0; i < timings.length; i++){
-			expected[i] = Long.valueOf(timings[i]); 
-		}
-		if(level == null)
-			level = levels.length;
-		TestSuite suite = new TestSuite("Level - " + level);
-		for (int i = 0; i <= level - 1 ;i++) {
-			Long remaining = expected[i] * 1000;
+	public synchronized static TestSuite suite() {
+		IntelliProperties propertiesManager = new IntelliProperties();
+		Queue<IntelliTestAdapter> tests = getTests();
+		List<Level> levels = propertiesManager.getLevelsUpTo(runtimeLevel);
+		TestSuite suite = new TestSuite("AllTests - Level - " + runtimeLevel);
+		for (Level level : levels) {
+			Long remaining = level.getDuration();
 			while(true){ 
 				IntelliTestAdapter nextTest = tests.peek();
 				if(nextTest == null)
@@ -43,6 +41,10 @@ public final class IntelliTestSuite {
 			}
 		}		
 		return suite;
+	}
+	
+	public synchronized static void setLevel(Integer level){
+		IntelliTestSuite.runtimeLevel = level;
 	}
 	
 	private static Queue<IntelliTestAdapter> getTests() {

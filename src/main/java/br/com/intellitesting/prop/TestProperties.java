@@ -1,21 +1,23 @@
-package br.com.intellitesting.main;
+package br.com.intellitesting.prop;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesManager {
+public class TestProperties {
 
 	private Properties properties;
 	private File file;
 
-	public PropertiesManager(Class<?> clazz) {
-		if(clazz != null)
-			file = new File(clazz.getName() + ".properties");			 
+	public TestProperties(Class<?> clazz) {
+		IntelliProperties intelliProps = new IntelliProperties();
+		if(clazz != null) {
+			String filename = intelliProps.getTestInfoDir() + File.separator + clazz.getName() + ".properties";
+			file = new File(filename);
+		}			 
 	}
 
 	private void init() {
@@ -28,8 +30,6 @@ public class PropertiesManager {
 			FileReader reader = new FileReader(file);
 			properties.load(reader);
 			reader.close();
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -41,14 +41,10 @@ public class PropertiesManager {
 		return properties.getProperty(property);
 	}
 
-	public static PropertiesManager newInstance(Class<?> clazz) {
-		return new PropertiesManager(clazz);
+	public static TestProperties newInstance(Class<?> clazz) {
+		return new TestProperties(clazz);
 	}
 	
-	public static PropertiesManager newInstance() {
-		return new PropertiesManager(null);
-	}
-
 	public void set(String key, Object value) {
 		if(properties == null)
 			init();
@@ -56,8 +52,6 @@ public class PropertiesManager {
 	}
 
 	public void close() {
-		if(file == null)
-			return;
 		try {
 			FileWriter writer = new FileWriter(file);
 			properties.store(writer, "test-properties");
