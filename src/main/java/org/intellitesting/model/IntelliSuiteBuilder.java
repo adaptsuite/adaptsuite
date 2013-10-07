@@ -17,6 +17,10 @@ public final class IntelliSuiteBuilder {
 	private Queue<IntelliTestAdapter> testQueue;
 	private Integer runtimeLevel;
 
+	public IntelliSuiteBuilder() {
+		this(Integer.MAX_VALUE);
+	}
+	
 	public IntelliSuiteBuilder(Integer runtimeLevel, Class<?>... tests) {
 		this.runtimeLevel = runtimeLevel;
 		if (tests.length == 0) {
@@ -37,8 +41,9 @@ public final class IntelliSuiteBuilder {
 
 	public TestSuite suite() {
 		IntelliProperties propertiesManager = new IntelliProperties();
+		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? runtimeLevel.toString(): "ALL";
 		List<Level> levels = propertiesManager.getLevelsUpTo(runtimeLevel);
-		TestSuite suite = new TestSuite("AllTests - Level - " + runtimeLevel);
+		TestSuite suite = new TestSuite("AllTests - Level - " + runtimeDescription);
 		for (Level level : levels) {
 			Long remaining = level.getDuration();
 			while (true) {

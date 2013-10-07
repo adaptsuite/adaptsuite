@@ -27,7 +27,7 @@ public class IntelliProperties {
 		String[] levelProps = get("intellitesting.levels").split(",");
 		String[] durationProps = get("intellitesting.durations").split(",");		
 		List<Level> levels = new ArrayList<Level>();
-		for(int i = 0; i <= Math.min(levelProps.length, runtimeLevel-1); i++){			
+		for(int i = 0; i <= Math.min(levelProps.length-1, runtimeLevel-1); i++){			
 			levels.add(new Level(levelProps[i],durationProps[i]));
 		}
 		return levels;
