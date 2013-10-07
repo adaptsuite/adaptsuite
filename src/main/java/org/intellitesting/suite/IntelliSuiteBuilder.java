@@ -19,6 +19,7 @@ public final class IntelliSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
 	private Integer runtimeLevel;
+	private IntelliProperties properties;
 
 	public IntelliSuiteBuilder() {
 		this(Integer.MAX_VALUE);
@@ -32,6 +33,7 @@ public final class IntelliSuiteBuilder {
 		IntelliTestAdapters adapters = new IntelliTestAdapters(tests);
 		Collections.sort(adapters, new IntelliSorter());
 		this.testQueue = new ArrayDeque<IntelliTestAdapter>(adapters);
+		properties = new IntelliProperties();
 	}
 
 	private Class<?>[] scanForTests() {
@@ -42,12 +44,15 @@ public final class IntelliSuiteBuilder {
 		return tests;
 	}
 
-	public TestSuite suite() {
-		IntelliProperties propertiesManager = new IntelliProperties();
-		List<Level> levels = propertiesManager.getLevelsUpTo(runtimeLevel);		
-		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? levels.get(runtimeLevel-1).getDescription(): "ALL";
-		
+	public TestSuite suite() {		
+		List<Level> levels = properties.getLevelsUpTo(runtimeLevel);		
+		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? levels.get(runtimeLevel-1).getDescription(): "ALL";		
 		TestSuite suite = new TestSuite("IntelliSuite - Level: " + runtimeDescription);
+		addTests(levels, suite);
+		return suite;
+	}
+
+	private void addTests(List<Level> levels, TestSuite suite) {
 		for (Level level : levels) {
 			Long remaining = level.getDuration();
 			while (true) {
@@ -61,6 +66,5 @@ public final class IntelliSuiteBuilder {
 				suite.addTest(nextTest);
 			}
 		}
-		return suite;
 	}
 }
