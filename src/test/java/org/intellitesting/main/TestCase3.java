@@ -5,8 +5,9 @@ import org.junit.Test;
 public class TestCase3 {
 
 	@Test
-	public void testTwo() throws InterruptedException{
+	public void testThree() throws InterruptedException{
+		System.out.println("Testing three...");
 		Thread.sleep(9000);
-		System.out.println("Test two");		
+		System.out.println("Tested three!");
 	}
 }

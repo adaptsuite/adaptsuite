@@ -8,17 +8,31 @@ import java.util.Queue;
 import junit.framework.TestSuite;
 
 import org.intellitesting.prop.IntelliProperties;
+import org.junit.extensions.cpsuite.ClassesFinder;
+import org.junit.extensions.cpsuite.ClasspathFinderFactory;
+import org.junit.extensions.cpsuite.SuiteType;
 
-public final class IntelliBuilder {
+public final class IntelliSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
 	private Integer runtimeLevel;
 
-	public IntelliBuilder(Integer runtimeLevel, Class<?>... tests) {
+	public IntelliSuiteBuilder(Integer runtimeLevel, Class<?>... tests) {
 		this.runtimeLevel = runtimeLevel;
+		if (tests.length == 0) {
+			tests = scanForTests();
+		}
 		IntelliTestAdapters adapters = new IntelliTestAdapters(tests);
 		Collections.sort(adapters, new IntelliSorter());
 		this.testQueue = new ArrayDeque<IntelliTestAdapter>(adapters);
+	}
+
+	private Class<?>[] scanForTests() {
+		Class<?>[] tests;
+		ClassesFinder classesFinder = new ClasspathFinderFactory().create(false, new String[0], new SuiteType[] { SuiteType.TEST_CLASSES },new Class<?>[] { Object.class },new Class<?>[0],"java.class.path");
+		List<Class<?>> scannedClasses = classesFinder.find();
+		tests = scannedClasses.toArray(new Class<?>[scannedClasses.size()]);
+		return tests;
 	}
 
 	public TestSuite suite() {

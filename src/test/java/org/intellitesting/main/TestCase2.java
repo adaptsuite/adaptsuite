@@ -6,7 +6,8 @@ public class TestCase2 {
 
 	@Test
 	public void testTwo() throws InterruptedException{
+		System.out.println("Testing two...");
 		Thread.sleep(4000);
-		System.out.println("Test two");
+		System.out.println("Tested two!");		
 	}
 }
