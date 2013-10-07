@@ -1,4 +1,4 @@
-package org.intellitesting.main;
+package org.intellitesting.test;
 
 import org.junit.Test;
 
