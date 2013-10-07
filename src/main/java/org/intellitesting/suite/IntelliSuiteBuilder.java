@@ -55,10 +55,8 @@ public final class IntelliSuiteBuilder {
 	private void addTests(List<Level> levels, TestSuite suite) {
 		for (Level level : levels) {
 			Long remaining = level.getDuration();
-			while (true) {
+			while (testQueue.peek() != null) {
 				IntelliTestAdapter nextTest = testQueue.peek();
-				if (nextTest == null)
-					break;
 				remaining = remaining - nextTest.getTime();
 				if (remaining < 0)
 					break;
