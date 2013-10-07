@@ -1,4 +1,4 @@
-package br.com.intellitesting.prop;
+package org.intellitesting.prop;
 
 import java.io.File;
 import java.io.FileReader;

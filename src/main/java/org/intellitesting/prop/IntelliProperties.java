@@ -1,4 +1,4 @@
-package br.com.intellitesting.prop;
+package org.intellitesting.prop;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import br.com.intellitesting.model.Level;
+import org.intellitesting.model.Level;
 
 public class IntelliProperties {	
 

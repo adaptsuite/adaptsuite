@@ -1,6 +1,7 @@
-package br.com.intellitesting.model;
+package org.intellitesting.model;
 
-import br.com.intellitesting.prop.TestProperties;
+import org.intellitesting.prop.TestProperties;
+
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;
 

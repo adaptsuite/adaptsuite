@@ -1,4 +1,4 @@
-package br.com.intellitesting.model;
+package org.intellitesting.model;
 
 public class Level {
 
