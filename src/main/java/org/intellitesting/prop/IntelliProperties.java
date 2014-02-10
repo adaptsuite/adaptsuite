@@ -36,6 +36,12 @@ public class IntelliProperties {
 		}
 		return levels;
 	}
+	
+	public List<Level> getLevelsUpTo(String runtimeDescription) {
+		List <Level> levels = new ArrayList<Level>();
+		levels.add(new Level(runtimeDescription));
+		return levels;
+	}
 
 	private String get(String key) {
 		return properties.getProperty(key);

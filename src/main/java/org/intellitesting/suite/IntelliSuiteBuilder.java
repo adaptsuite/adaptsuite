@@ -1,6 +1,7 @@
 package org.intellitesting.suite;
 
 import java.util.ArrayDeque;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
@@ -22,7 +23,7 @@ public final class IntelliSuiteBuilder {
 	private IntelliProperties properties;
 
 	public IntelliSuiteBuilder() {
-		this(Integer.MAX_VALUE);
+		this(0);
 	}
 	
 	public IntelliSuiteBuilder(Integer runtimeLevel, Class<?>... tests) {
@@ -46,12 +47,29 @@ public final class IntelliSuiteBuilder {
 
 	public TestSuite suite() {		
 		List<Level> levels = properties.getLevelsUpTo(runtimeLevel);		
-		String runtimeDescription = (runtimeLevel < Integer.MAX_VALUE)? levels.get(runtimeLevel-1).getDescription(): "ALL";		
+		String runtimeDescription = (runtimeLevel > 0)? levels.get(runtimeLevel-1).getDescription(): "ALL";		
+		TestSuite suite = new TestSuite("IntelliSuite - Level: " + runtimeDescription);
+		addTests(levels, suite);
+		return suite;
+	}
+	
+	public TestSuite suite(Integer runtime, Integer unit ) {
+		String runtimeDescription = " " ;
+		switch(unit){
+		case 0:
+			runtimeDescription = runtime.toString() + "sec";
+			break;
+		case 1:
+			runtimeDescription = runtime.toString() + "min";
+			break;
+		}
+		List<Level> levels = properties.getLevelsUpTo(runtimeDescription);
 		TestSuite suite = new TestSuite("IntelliSuite - Level: " + runtimeDescription);
 		addTests(levels, suite);
 		return suite;
 	}
 
+	
 	private void addTests(List<Level> levels, TestSuite suite) {
 		for (Level level : levels) {
 			Long remaining = level.getDuration();
