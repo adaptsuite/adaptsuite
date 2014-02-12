@@ -45,6 +45,8 @@ public final class IntelliSuiteBuilder {
 		return tests;
 	}
 
+	/*Antigo método de criação de suite. Pode ser excluido se formos usar o 
+	 * LevelAnySuite.*/
 	public TestSuite suite() {		
 		List<Level> levels = properties.getLevelsUpTo(runtimeLevel);		
 		String runtimeDescription = (runtimeLevel > 0)? levels.get(runtimeLevel-1).getDescription(): "ALL";		
@@ -53,6 +55,8 @@ public final class IntelliSuiteBuilder {
 		return suite;
 	}
 	
+	/*Novo método que cria uma suite de testes baseada no tempo que o usuário 
+	 * passa.*/
 	public TestSuite suite(Integer runtime, Integer unit ) {
 		String runtimeDescription = " " ;
 		switch(unit){

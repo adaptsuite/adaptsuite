@@ -27,7 +27,9 @@ public class IntelliProperties {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
+	/*Antigo método de criação de níveis baseado no arquivo de propiedades. Pode 
+	 * ser excluido se formos usar o LevelAnySuite*/
 	public List<Level> getLevelsUpTo(Integer runtimeLevel) {
 		String[] durationProps = get("intellitesting.durations").split(",");		
 		List<Level> levels = new ArrayList<Level>();
@@ -37,6 +39,8 @@ public class IntelliProperties {
 		return levels;
 	}
 	
+	/*Novo método de criação de nível que recebe uma string com a descrição do nível
+	 * e o cria.*/
 	public List<Level> getLevelsUpTo(String runtimeDescription) {
 		List <Level> levels = new ArrayList<Level>();
 		levels.add(new Level(runtimeDescription));
