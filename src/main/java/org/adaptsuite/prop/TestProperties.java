@@ -21,12 +21,7 @@ public class TestProperties {
 	}
 
 	private void init() {
-		properties = new Properties();
-//		InputStream mainProperties = this.getClass().getResourceAsStream("/intellitesting.properties");
-//		try {
-//			properties.load(mainProperties);
-//			if(file == null || !file.exists())
-//				return;			
+		properties = new Properties();		
 		try {
 			FileReader reader = new FileReader(file);
 			properties.load(reader);
