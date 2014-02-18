@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
 
 @RunWith(AllTests.class)
-public class Seconds20Suite {
+public class Minutes2Suite {
 	public static TestSuite suite() {
-		return new IntelliSuiteBuilder().sec(20).build();
+		return new IntelliSuiteBuilder().min(2).build();
 	}
 }

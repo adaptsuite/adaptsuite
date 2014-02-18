@@ -49,7 +49,11 @@ public final class IntelliSuiteBuilder {
 	private String getSuiteDescription() {
 		if(availableTimeMili == Long.MAX_VALUE)
 			return "ALL";
-		return (availableTimeMili/1000) + " seconds";
+		int seconds = (int)(availableTimeMili/1000);
+		int minutes = seconds/60;
+		if(seconds < 60)			
+			return seconds + " seconds";
+		return minutes+ " minutes";
 	}
 
 	private void addTests(TestSuite suite) {
@@ -64,6 +68,11 @@ public final class IntelliSuiteBuilder {
 		}
 	}
 
+
+	public IntelliSuiteBuilder min(int minutes) {
+		return sec(minutes * 60);
+	}
+	
 	public IntelliSuiteBuilder sec(int seconds) {
 		this.availableTimeMili = seconds * 1000;
 		return this;
