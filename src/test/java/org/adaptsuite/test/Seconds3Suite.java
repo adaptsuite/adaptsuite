@@ -1,14 +1,14 @@
-package org.intellitesting.test;
+package org.adaptsuite.test;
 
 import junit.framework.TestSuite;
 
-import org.intellitesting.suite.IntelliSuiteBuilder;
+import org.adaptsuite.suite.IntelliSuiteBuilder;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
 
 @RunWith(AllTests.class)
-public class Level1Suite {
+public class Seconds3Suite {
 	public static TestSuite suite(){
-		return new IntelliSuiteBuilder(1).suite();
+		return new IntelliSuiteBuilder().sec(3).build();
 	}
 }

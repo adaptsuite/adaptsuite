@@ -1,13 +1,13 @@
-package org.intellitesting.test;
+package org.adaptsuite.test;
 
 import org.junit.Test;
 
-public class TestCase1 {
+public class TestCase1Sec {
 
 	@Test
 	public void testOne() throws InterruptedException {
 		System.out.println("Testing one...");
-		Thread.sleep(1000);
+		Thread.sleep(990);
 		System.out.println("Tested one!");
 	}
 }

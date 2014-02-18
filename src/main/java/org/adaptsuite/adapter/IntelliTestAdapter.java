@@ -1,6 +1,6 @@
-package org.intellitesting.adapter;
+package org.adaptsuite.adapter;
 
-import org.intellitesting.prop.TestProperties;
+import org.adaptsuite.prop.TestProperties;
 
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;

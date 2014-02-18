@@ -1,4 +1,4 @@
-package org.intellitesting.adapter;
+package org.adaptsuite.adapter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package org.intellitesting.suite;
+package org.adaptsuite.suite;
 
 public enum IntellSuiteEnum {
 	SECONDS, MINUTES

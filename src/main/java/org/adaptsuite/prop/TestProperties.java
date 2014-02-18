@@ -1,4 +1,4 @@
-package org.intellitesting.prop;
+package org.adaptsuite.prop;
 
 import java.io.File;
 import java.io.FileReader;
@@ -11,22 +11,23 @@ public class TestProperties {
 
 	private Properties properties;
 	private File file;
+	private String tmpDir = System.getProperty("java.io.tmpdir");
 
 	public TestProperties(Class<?> clazz) {
-		IntelliProperties intelliProps = new IntelliProperties();
 		if(clazz != null) {
-			String filename = intelliProps.getTestInfoDir() + File.separator + clazz.getName() + ".properties";
+			String filename = tmpDir + File.separator + clazz.getName() + ".properties";
 			file = new File(filename);
 		}			 
 	}
 
 	private void init() {
 		properties = new Properties();
-		InputStream mainProperties = this.getClass().getResourceAsStream("/intellitesting.properties");
+//		InputStream mainProperties = this.getClass().getResourceAsStream("/intellitesting.properties");
+//		try {
+//			properties.load(mainProperties);
+//			if(file == null || !file.exists())
+//				return;			
 		try {
-			properties.load(mainProperties);
-			if(file == null || !file.exists())
-				return;			
 			FileReader reader = new FileReader(file);
 			properties.load(reader);
 			reader.close();
