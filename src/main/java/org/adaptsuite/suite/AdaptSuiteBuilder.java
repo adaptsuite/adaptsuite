@@ -13,17 +13,17 @@ import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
 import org.junit.extensions.cpsuite.SuiteType;
 
-public final class IntelliSuiteBuilder {
+public final class AdaptSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
 	private long availableTimeMili = Long.MAX_VALUE;
 
-	public IntelliSuiteBuilder(Class<?>... tests) {
+	public AdaptSuiteBuilder(Class<?>... tests) {
 		if (tests.length == 0) {
 			tests = scanForTests();
 		}
 		IntelliTestAdapters adapters = new IntelliTestAdapters(tests);
-		Collections.sort(adapters, new IntelliSorter());
+		Collections.sort(adapters, new AdaptSorter());
 		this.testQueue = new ArrayDeque<IntelliTestAdapter>(adapters);
 	}
 
@@ -69,11 +69,11 @@ public final class IntelliSuiteBuilder {
 	}
 
 
-	public IntelliSuiteBuilder min(int minutes) {
+	public AdaptSuiteBuilder min(int minutes) {
 		return sec(minutes * 60);
 	}
 	
-	public IntelliSuiteBuilder sec(int seconds) {
+	public AdaptSuiteBuilder sec(int seconds) {
 		this.availableTimeMili = seconds * 1000;
 		return this;
 	}
