@@ -11,7 +11,7 @@ import org.junit.runners.AllTests;
 @RunWith(AllTests.class)
 public class LevelAnySuite {
 	public static TestSuite suite() {
-		return new IntelliSuiteBuilder().suite(15, 0);
+		return new IntelliSuiteBuilder().suite(4, 0);
 	}
 	
 }
