@@ -21,8 +21,10 @@ public class TestProperties {
 	}
 
 	private void init() {
-		properties = new Properties();		
+		properties = new Properties();
 		try {
+			if (file == null || !file.exists())
+				return;
 			FileReader reader = new FileReader(file);
 			properties.load(reader);
 			reader.close();
