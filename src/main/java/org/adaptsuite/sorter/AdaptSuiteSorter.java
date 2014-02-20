@@ -21,16 +21,18 @@ public class AdaptSuiteSorter {
 		Queue<IntelliTestAdapter> testQueue = suiteBuilder.getTestQueue();
 		int queueSize = testQueue.size();
 		maxTime = suiteBuilder.getAvailableTimeMili();
-		constructTestTime(testQueue, queueSize);
+		buildArrays(testQueue, queueSize);
 	}
 	
-	private void constructTestTime (Queue<IntelliTestAdapter> testQueue, int queueSize) {
+	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
 		
 		testTime = new Long[queueSize];
+		testFailure = new Long[queueSize];
 		int i = 0;
 		
 		for (IntelliTestAdapter obj : testQueue) {
-			testTime[i++] = obj.getTime();
+			testTime[i] = obj.getTime();
+			testFailure[i++] = obj.getFailure();
 		}
 	}
 
