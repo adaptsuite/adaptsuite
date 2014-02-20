@@ -9,6 +9,7 @@ import junit.framework.TestSuite;
 
 import org.adaptsuite.adapter.IntelliTestAdapter;
 import org.adaptsuite.adapter.IntelliTestAdapters;
+import org.adaptsuite.sorter.*;
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
 import org.junit.extensions.cpsuite.SuiteType;
@@ -41,7 +42,9 @@ public final class AdaptSuiteBuilder {
 
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
+		AdaptSuiteSorter sorter = new AdaptSuiteSorter();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
+		sorter.chooseTests(this, suite);
 		addTests(suite);
 		return suite;
 	}
@@ -73,8 +76,18 @@ public final class AdaptSuiteBuilder {
 		return sec(minutes * 60);
 	}
 	
+	
 	public AdaptSuiteBuilder sec(int seconds) {
 		this.availableTimeMili = seconds * 1000;
 		return this;
+	}
+	
+	
+	public Queue<IntelliTestAdapter> getTestQueue() {
+		return this.testQueue;
+	}
+	
+	public long getAvailableTimeMili() {
+		return this.availableTimeMili;
 	}
 }
