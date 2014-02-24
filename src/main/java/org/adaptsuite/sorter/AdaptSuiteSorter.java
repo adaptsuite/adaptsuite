@@ -1,7 +1,5 @@
 package org.adaptsuite.sorter;
 
-import java.lang.Math;
-
 public class AdaptSuiteSorter {
 
 	private boolean[] chosenTests;
