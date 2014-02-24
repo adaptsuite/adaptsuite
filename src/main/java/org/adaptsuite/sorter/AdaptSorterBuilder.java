@@ -10,7 +10,7 @@ import junit.framework.TestSuite;
 
 /*Ideia dessa classe é escolher o maior número de testes possíveis dentro do 
  * tempo limite, e não mais pegar os primeiros testes até estourar o tempo.*/
-public class AdaptSuiteSorter {
+public class AdaptSorterBuilder {
 	
 	private Long maxTime;
 	private Long[] testTime;
