@@ -42,9 +42,7 @@ public final class AdaptSuiteBuilder {
 
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
-		AdaptSorterBuilder sorter = new AdaptSorterBuilder();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		//sorter.chooseTests(this, suite);
 		addTests(suite);
 		return suite;
 	}
