@@ -5,7 +5,7 @@ public class AdaptSuiteSorter {
 	private boolean[] chosenTests;
 	private Long[][] knaspackTabble;
 	
-	private boolean[]  FindTests (Long[] testTime, Long[] testFailure, int queueSize, Long maxTime) {
+	public boolean[]  FindTests (Long[] testTime, Long[] testFailure, int queueSize, Long maxTime) {
 		
 		
 		chosenTests = new boolean[queueSize];
@@ -37,13 +37,13 @@ public class AdaptSuiteSorter {
 	
 	private Long Max (Long a, Long b) {
 		
-		return a.longValue() > b.longValue() ? a : b;
+		return a.longValue() >= b.longValue() ? a : b;
 	}
 	
 	
 	private void ChooseTests (Long[] testTime, int queueSize, Long maxTime) {
 		
-		Long time = maxTime;
+		Long time = maxTime - 1;
 		
 		for (int i = queueSize - 1; i >= 1; i--)
 			if(knaspackTabble[i][time.intValue()] == knaspackTabble[i-1][time.intValue()])
