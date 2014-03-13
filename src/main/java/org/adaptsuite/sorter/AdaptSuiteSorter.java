@@ -28,16 +28,11 @@ public class AdaptSuiteSorter {
 				if (testTime[i-1].intValue() > time)
 					b = (Long)0L;
 				else
-					b = knaspackTabble[i-1][time - testTime[i-1].intValue()] + testFailure[i];
+					b = knaspackTabble[i-1][time - testTime[i-1].intValue()] + testFailure[i-1];
 				
 				knaspackTabble[i][time] = Max(a, b);
 			}
 		}
-	}
-	
-	private Long Max (Long a, Long b) {
-		
-		return a.longValue() >= b.longValue() ? a : b;
 	}
 	
 	
@@ -45,13 +40,19 @@ public class AdaptSuiteSorter {
 		
 		Long time = maxTime;
 		
-		for (int i = queueSize - 1; i >= 1; i--)
+		for (int i = queueSize; i >= 1; i--)
 			if(knaspackTabble[i][time.intValue()] == knaspackTabble[i-1][time.intValue()])
-				chosenTests[i] = false;
+				chosenTests[i-1] = false;
 			else {
-				chosenTests[i] = true;
-				time -= testTime[i];
+				chosenTests[i-1] = true;
+				time -= testTime[i-1];
 			}
+	}
+	
+	
+	private Long Max (Long a, Long b) {
+		
+		return a.longValue() >= b.longValue() ? a : b;
 	}
 	
 }
