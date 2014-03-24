@@ -10,6 +10,10 @@ public class AdaptSuiteSorter {
 		
 		chosenTests = new boolean[queueSize];
 		knaspackTabble = new Long [queueSize + 1][maxTime.intValue() + 1];
+		
+		if(testTime[0] == 0)
+			return trivialCase();
+					
 		TestsValue(testTime, testFailure, queueSize, maxTime);
 		ChooseTests(testTime, queueSize, maxTime);
 		return chosenTests;
@@ -55,4 +59,12 @@ public class AdaptSuiteSorter {
 		return a.longValue() >= b.longValue() ? a : b;
 	}
 	
+	
+	private boolean[] trivialCase() {
+		
+		for (int i = 0; i < chosenTests.length; i++)
+			chosenTests[i] = true;
+		
+		return chosenTests;
+	}
 }
