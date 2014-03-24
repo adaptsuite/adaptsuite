@@ -43,7 +43,7 @@ public final class AdaptSuiteBuilder {
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		addTests(suite);
+		addTests2(suite);
 		return suite;
 	}
 
@@ -69,7 +69,21 @@ public final class AdaptSuiteBuilder {
 		}
 	}
 
-
+	
+	private void addTests2 (TestSuite suite) {
+		AdaptSorterBuilder sorter = new AdaptSorterBuilder();
+		boolean[] chosenTests = sorter.chooseTests(this.testQueue, this.availableTimeMili);
+		int i = 0;
+		
+		while (testQueue.peek() != null) {
+			if(chosenTests[i++])
+				suite.addTest(testQueue.peek());
+			
+			testQueue.poll();
+		}
+	}
+	
+	
 	public AdaptSuiteBuilder min(int minutes) {
 		return sec(minutes * 60);
 	}
@@ -80,12 +94,4 @@ public final class AdaptSuiteBuilder {
 		return this;
 	}
 	
-	
-	public Queue<IntelliTestAdapter> getTestQueue() {
-		return this.testQueue;
-	}
-	
-	public long getAvailableTimeMili() {
-		return this.availableTimeMili;
-	}
 }

@@ -12,16 +12,16 @@ import junit.framework.TestSuite;
  * tempo limite, e não mais pegar os primeiros testes até estourar o tempo.*/
 public class AdaptSorterBuilder {
 	
-	private Long maxTime;
 	private Long[] testTime;
 	private Long[] testFailure;
 	
-	public void chooseTests (AdaptSuiteBuilder suiteBuilder, TestSuite suite) {
+	public boolean[] chooseTests (Queue<IntelliTestAdapter> testQueue, Long maxTime) {
 		
-		Queue<IntelliTestAdapter> testQueue = suiteBuilder.getTestQueue();
+		AdaptSuiteSorter testSorter = new AdaptSuiteSorter();
 		int queueSize = testQueue.size();
-		maxTime = suiteBuilder.getAvailableTimeMili();
+		
 		buildArrays(testQueue, queueSize);
+		return testSorter.FindTests(testTime, testFailure, queueSize, maxTime);
 	}
 	
 	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
