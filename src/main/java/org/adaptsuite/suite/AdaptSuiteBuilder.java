@@ -43,9 +43,23 @@ public final class AdaptSuiteBuilder {
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		addTests2(suite);
+		addTests(suite);
 		return suite;
 	}
+	
+	
+	private void addTests (TestSuite suite) {
+		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili);
+		int i = 0;
+		
+		while (testQueue.peek() != null) {
+			if(chosenTests[i++])
+				suite.addTest(testQueue.peek());
+			
+			testQueue.poll();
+		}
+	}
+
 
 	private String getSuiteDescription() {
 		if(availableTimeMili == Long.MAX_VALUE)
@@ -55,32 +69,6 @@ public final class AdaptSuiteBuilder {
 		if(seconds < 60)			
 			return seconds + " seconds";
 		return minutes+ " minutes";
-	}
-
-	private void addTests(TestSuite suite) {
-		Long remaining = availableTimeMili;
-		while (testQueue.peek() != null) {
-			IntelliTestAdapter nextTest = testQueue.peek();
-			remaining = remaining - nextTest.getTime();
-			if (remaining < 0)
-				break;
-			testQueue.poll();
-			suite.addTest(nextTest);
-		}
-	}
-
-	
-	private void addTests2 (TestSuite suite) {
-		AdaptSorterBuilder sorter = new AdaptSorterBuilder();
-		boolean[] chosenTests = sorter.chooseTests(this.testQueue, this.availableTimeMili);
-		int i = 0;
-		
-		while (testQueue.peek() != null) {
-			if(chosenTests[i++])
-				suite.addTest(testQueue.peek());
-			
-			testQueue.poll();
-		}
 	}
 	
 	
@@ -93,5 +81,4 @@ public final class AdaptSuiteBuilder {
 		this.availableTimeMili = seconds * 1000;
 		return this;
 	}
-	
 }
