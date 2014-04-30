@@ -20,7 +20,6 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		long total = System.currentTimeMillis() - before;
 		propertiesManager.set("run.miliseconds",total);
 		propertiesManager.set("failure.value", setFailure(result) );
-		System.out.println();
 		propertiesManager.close();
 	}
 
@@ -29,7 +28,14 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		if(failureValue == null)
 			failureValue = 0L;
 		
-		return failureValue + result.errorCount() + result.failureCount();
+		if ((result.errorCount() + result.failureCount()) == 0)
+		{
+			if (failureValue > 1)
+				failureValue -= 1;
+		}
+		
+		failureValue += result.errorCount() + result.failureCount();
+		return failureValue;
 		
 	}
 
