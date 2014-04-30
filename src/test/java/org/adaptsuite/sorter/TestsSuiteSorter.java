@@ -4,7 +4,6 @@ import org.junit.Test;
 
 
 public class TestsSuiteSorter {
-	@Test
 	public void TestSorter() {
 		
 		Long[] time = {5000L,3000L,2000L};

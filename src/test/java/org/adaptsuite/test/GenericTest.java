@@ -1,6 +1,6 @@
 package org.adaptsuite.test;
 
-public class GenericTest {
+abstract class GenericTest {
 
 	protected boolean failedTest = false;
 	

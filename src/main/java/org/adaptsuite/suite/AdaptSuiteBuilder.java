@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
+import junit.framework.TestResult;
 import junit.framework.TestSuite;
 
 import org.adaptsuite.adapter.IntelliTestAdapter;
@@ -42,8 +43,10 @@ public final class AdaptSuiteBuilder {
 
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
+		TestResult suiteResult = new TestResult();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		addTests(suite);
+		suite.run(suiteResult);
 		return suite;
 	}
 	
