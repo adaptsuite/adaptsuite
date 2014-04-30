@@ -19,8 +19,16 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		super.run(result);
 		long total = System.currentTimeMillis() - before;
 		propertiesManager.set("run.miliseconds",total);
-		propertiesManager.set("failure.value", 1 );
+		propertiesManager.set("failure.value", setFailure() );
 		propertiesManager.close();
+	}
+
+	private Long setFailure() {
+		Long failureValue = propertiesManager.getLong("failure.value");
+		if(failureValue == null)
+			return 0L;
+		return 1L;
+		
 	}
 
 	public Long getTime() {

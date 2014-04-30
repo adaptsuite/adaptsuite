@@ -43,10 +43,8 @@ public final class AdaptSuiteBuilder {
 
 	public TestSuite build() {
 		String runtimeDescription = getSuiteDescription();
-		TestResult suiteResult = new TestResult();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		addTests(suite);
-		suite.run(suiteResult);
 		return suite;
 	}
 	
