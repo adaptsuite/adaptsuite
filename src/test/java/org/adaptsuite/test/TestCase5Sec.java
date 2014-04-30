@@ -2,7 +2,7 @@ package org.adaptsuite.test;
 
 import org.junit.Test;
 
-public class TestCase5Sec extends GenericTest{
+public class TestCase5Sec {
 
 	@Test
 	public void testOne() throws InterruptedException {
