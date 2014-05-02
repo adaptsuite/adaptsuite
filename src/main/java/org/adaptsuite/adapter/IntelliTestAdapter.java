@@ -26,7 +26,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	private Long setFailure(TestResult result) {
 		Long failureValue = propertiesManager.getLong("failure.value");
 		if(failureValue == null)
-			failureValue = 0L;
+			failureValue = 1L;
 		
 		if ((result.errorCount() + result.failureCount()) == 0)
 		{
