@@ -5,12 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
-import junit.framework.TestResult;
 import junit.framework.TestSuite;
 
 import org.adaptsuite.adapter.IntelliTestAdapter;
 import org.adaptsuite.adapter.IntelliTestAdapters;
-import org.adaptsuite.sorter.*;
+import org.adaptsuite.sorter.AdaptSorterBuilder;
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
 import org.junit.extensions.cpsuite.SuiteType;
@@ -51,12 +50,10 @@ public final class AdaptSuiteBuilder {
 	
 	private void addTests (TestSuite suite) {
 		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili);
-		int i = 0;
-		
+		int i = 0;		
 		while (testQueue.peek() != null) {
 			if(chosenTests[i++])
-				suite.addTest(testQueue.peek());
-			
+				suite.addTest(testQueue.peek());			
 			testQueue.poll();
 		}
 	}

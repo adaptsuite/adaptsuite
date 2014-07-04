@@ -1,15 +1,18 @@
 package org.adaptsuite.sorter;
 
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class TestsSuiteSorter {
 	public void TestSorter() {
-		
-		Long[] time = {5000L,3000L,2000L};
-		Long[] failures = {1L,1L,1L};
+		List<TestData> testData = Arrays.asList(
+				new TestData(5000L, 1L),
+				new TestData(3000L, 1L),
+				new TestData(2000L, 1L)
+		);
 		AdaptSuiteSorter test = new AdaptSuiteSorter();
-		boolean[] result = test.FindTests(time, failures, 3, 5000L);
+		boolean[] result = test.findTests(testData, 3, 5000L);
 		
 		for(int i=0; i<3; i++)
 			System.out.print(result[i] + " ");
