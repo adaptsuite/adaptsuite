@@ -1,4 +1,4 @@
-package org.adaptsuite.sorter;
+package main.java.org.adaptsuite.sorter;
 
 import java.util.List;
 

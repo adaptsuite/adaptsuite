@@ -1,8 +1,8 @@
-package org.adaptsuite.test;
+package test.java.org.adaptsuite.test;
 
 import junit.framework.TestSuite;
 
-import org.adaptsuite.suite.AdaptSuiteBuilder;
+import main.java.org.adaptsuite.suite.AdaptSuiteBuilder;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
 

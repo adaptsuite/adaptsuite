@@ -1,7 +1,10 @@
-package org.adaptsuite.sorter;
+package test.java.org.adaptsuite.sorter;
 
 import java.util.Arrays;
 import java.util.List;
+
+import main.java.org.adaptsuite.sorter.AdaptSuiteSorter;
+import main.java.org.adaptsuite.sorter.TestData;
 
 
 public class TestsSuiteSorter {

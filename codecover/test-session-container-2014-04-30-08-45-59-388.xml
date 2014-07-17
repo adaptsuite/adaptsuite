@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1398858359382" TestSessionContainerId="8111d0a6-0747-4dea-b48a-f34d27201a7a" version="1.0">
+<SrcFileList>
+<SrcFile Content="package org.adaptsuite.sorter;&#10;&#10;public class AdaptSuiteSorter {&#10;&#10;&#9;private boolean[] chosenTests;&#10;&#9;private Long[][] knaspackTabble;&#10;&#9;&#10;&#9;public boolean[]  FindTests (Long[] testTime, Long[] testFailure, int queueSize, Long maxTime) {&#10;&#9;&#9;&#10;&#9;&#9;&#10;&#9;&#9;chosenTests = new boolean[queueSize];&#10;&#9;&#9;knaspackTabble = new Long [queueSize + 1][maxTime.intValue() + 1];&#10;&#9;&#9;&#10;&#9;&#9;if(testTime[0] == 0)&#10;&#9;&#9;&#9;return trivialCase();&#10;&#9;&#9;&#9;&#9;&#9;&#10;&#9;&#9;TestsValue(testTime, testFailure, queueSize, maxTime);&#10;&#9;&#9;ChooseTests(testTime, queueSize, maxTime);&#10;&#9;&#9;return chosenTests;&#10;&#9;&#9;&#10;&#9;}&#10;&#9;&#10;&#9;private void  TestsValue (Long[] testTime, Long[] testFailure, int queueSize, Long maxTime) {&#10;&#9;&#9;&#10;&#9;&#9;Long a, b;&#10;&#9;&#9;&#10;&#9;&#9;for (int time = 0; time &lt;= maxTime; time++) {&#10;&#9;&#9;&#9;knaspackTabble[0][time] = (Long)0L;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;for (int i = 1; i &lt;= queueSize; i++) {&#10;&#9;&#9;&#9;&#9;a = knaspackTabble[i-1][time];&#10;&#9;&#9;&#9;&#9;if (testTime[i-1].intValue() &gt; time)&#10;&#9;&#9;&#9;&#9;&#9;b = (Long)0L;&#10;&#9;&#9;&#9;&#9;else&#10;&#9;&#9;&#9;&#9;&#9;b = knaspackTabble[i-1][time - testTime[i-1].intValue()] + testFailure[i-1];&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;knaspackTabble[i][time] = Max(a, b);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;}&#10;&#9;}&#10;&#9;&#10;&#9;&#10;&#9;private void ChooseTests (Long[] testTime, int queueSize, Long maxTime) {&#10;&#9;&#9;&#10;&#9;&#9;Long time = maxTime;&#10;&#9;&#9;&#10;&#9;&#9;for (int i = queueSize; i &gt;= 1; i--)&#10;&#9;&#9;&#9;if(knaspackTabble[i][time.intValue()] == knaspackTabble[i-1][time.intValue()])&#10;&#9;&#9;&#9;&#9;chosenTests[i-1] = false;&#10;&#9;&#9;&#9;else {&#10;&#9;&#9;&#9;&#9;chosenTests[i-1] = true;&#10;&#9;&#9;&#9;&#9;time -= testTime[i-1];&#10;&#9;&#9;&#9;}&#10;&#9;}&#10;&#9;&#10;&#9;&#10;&#9;private Long Max (Long a, Long b) {&#10;&#9;&#9;&#10;&#9;&#9;return a.longValue() &gt;= b.longValue() ? a : b;&#10;&#9;}&#10;&#9;&#10;&#9;&#10;&#9;private boolean[] trivialCase() {&#10;&#9;&#9;&#10;&#9;&#9;for (int i = 0; i &lt; chosenTests.length; i++)&#10;&#9;&#9;&#9;chosenTests[i] = true;&#10;&#9;&#9;&#10;&#9;&#9;return chosenTests;&#10;&#9;}&#10;}&#10;" Filename="AdaptSuiteSorter.java" Intrnl_Id="1"/>
+<SrcFile Content="package org.adaptsuite.sorter;&#10;&#10;import org.junit.Test;&#10;&#10;&#10;public class TestsSuiteSorter {&#10;&#9;public void TestSorter() {&#10;&#9;&#9;&#10;&#9;&#9;Long[] time = {5000L,3000L,2000L};&#10;&#9;&#9;Long[] failures = {1L,1L,1L};&#10;&#9;&#9;AdaptSuiteSorter test = new AdaptSuiteSorter();&#10;&#9;&#9;boolean[] result = test.FindTests(time, failures, 3, 5000L);&#10;&#9;&#9;&#10;&#9;&#9;for(int i=0; i&lt;3; i++)&#10;&#9;&#9;&#9;System.out.print(result[i] + &quot; &quot;);&#10;&#9;&#9;System.out.println();&#10;&#9;}&#10;}&#10;" Filename="TestsSuiteSorter.java" Intrnl_Id="2"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="3"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="4"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="5"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="6"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="132" HierarchyLvlTypeId="6" Intrnl_Id="7" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="131" HierarchyLvlTypeId="3" Intrnl_Id="8" Name="org">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="130" HierarchyLvlTypeId="3" Intrnl_Id="9" Name="adaptsuite">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="129" HierarchyLvlTypeId="3" Intrnl_Id="10" Name="sorter">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="126" HierarchyLvlTypeId="4" Intrnl_Id="11" Name="AdaptSuiteSorter">
+<Header>
+<Loc EndOffset="61" SrcFileId="1" StartOffset="32"/>
+</Header>
+<LocList>
+<Loc EndOffset="1599" SrcFileId="1" StartOffset="32"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="121" HierarchyLvlTypeId="5" Intrnl_Id="12" Name="FindTests">
+<Header>
+<Loc EndOffset="228" SrcFileId="1" StartOffset="134"/>
+</Header>
+<LocList>
+<Loc EndOffset="532" SrcFileId="1" StartOffset="134"/>
+</LocList>
+<StmntSeq Intrnl_Id="13">
+<LocList>
+<Loc EndOffset="276" SrcFileId="1" StartOffset="239"/>
+<Loc EndOffset="345" SrcFileId="1" StartOffset="279"/>
+<Loc EndOffset="396" SrcFileId="1" StartOffset="351"/>
+<Loc EndOffset="459" SrcFileId="1" StartOffset="405"/>
+<Loc EndOffset="504" SrcFileId="1" StartOffset="462"/>
+<Loc EndOffset="526" SrcFileId="1" StartOffset="507"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="14">
+<LocList>
+<Loc EndOffset="276" SrcFileId="1" StartOffset="239"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="15">
+<LocList>
+<Loc EndOffset="345" SrcFileId="1" StartOffset="279"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S3" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="16">
+<Branch CovItemId="B1" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="false" Intrnl_Id="17">
+<Cond/>
+<LocList>
+<Loc EndOffset="396" SrcFileId="1" StartOffset="375"/>
+</LocList>
+<StmntSeq Intrnl_Id="18">
+<LocList>
+<Loc EndOffset="396" SrcFileId="1" StartOffset="375"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="19">
+<LocList>
+<Loc EndOffset="396" SrcFileId="1" StartOffset="375"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="true" Intrnl_Id="20">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="21">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="353" SrcFileId="1" StartOffset="351"/>
+<LocList>
+<Loc EndOffset="396" SrcFileId="1" StartOffset="351"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="22">
+<BasicBoolTerm Intrnl_Id="23">
+<LocList>
+<Loc EndOffset="370" SrcFileId="1" StartOffset="354"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="24">
+<LocList>
+<Loc EndOffset="459" SrcFileId="1" StartOffset="405"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="25">
+<LocList>
+<Loc EndOffset="504" SrcFileId="1" StartOffset="462"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="526" SrcFileId="1" StartOffset="507"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="122" HierarchyLvlTypeId="5" Intrnl_Id="27" Name="TestsValue">
+<Header>
+<Loc EndOffset="627" SrcFileId="1" StartOffset="536"/>
+</Header>
+<LocList>
+<Loc EndOffset="1025" SrcFileId="1" StartOffset="536"/>
+</LocList>
+<StmntSeq Intrnl_Id="28">
+<LocList>
+<Loc EndOffset="1022" SrcFileId="1" StartOffset="651"/>
+</LocList>
+<LoopStmnt CovItemId="S8" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="29" MltplExecId="L1-2" MltplExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" NvrExecId="L1-0" NvrExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OnceExecutedId="L1-1" OnceExecutedPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="30">
+<LocList>
+<Loc EndOffset="735" SrcFileId="1" StartOffset="700"/>
+<Loc EndOffset="1018" SrcFileId="1" StartOffset="743"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="31">
+<LocList>
+<Loc EndOffset="735" SrcFileId="1" StartOffset="700"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S10" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="32" MltplExecId="L2-2" MltplExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" NvrExecId="L2-0" NvrExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OnceExecutedId="L2-1" OnceExecutedPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="33">
+<LocList>
+<Loc EndOffset="816" SrcFileId="1" StartOffset="786"/>
+<Loc EndOffset="967" SrcFileId="1" StartOffset="821"/>
+<Loc EndOffset="1013" SrcFileId="1" StartOffset="977"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="34">
+<LocList>
+<Loc EndOffset="816" SrcFileId="1" StartOffset="786"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S12" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="35">
+<Branch CovItemId="B3" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="false" Intrnl_Id="36">
+<Cond/>
+<LocList>
+<Loc EndOffset="876" SrcFileId="1" StartOffset="863"/>
+</LocList>
+<StmntSeq Intrnl_Id="37">
+<LocList>
+<Loc EndOffset="876" SrcFileId="1" StartOffset="863"/>
+</LocList>
+<BasicStmnt CovItemId="S13" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="38">
+<LocList>
+<Loc EndOffset="876" SrcFileId="1" StartOffset="863"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="false" Intrnl_Id="39">
+<Cond>
+<Loc EndOffset="885" SrcFileId="1" StartOffset="881"/>
+</Cond>
+<LocList>
+<Loc EndOffset="967" SrcFileId="1" StartOffset="891"/>
+</LocList>
+<StmntSeq Intrnl_Id="40">
+<LocList>
+<Loc EndOffset="967" SrcFileId="1" StartOffset="891"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="41">
+<LocList>
+<Loc EndOffset="967" SrcFileId="1" StartOffset="891"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="823" SrcFileId="1" StartOffset="821"/>
+<LocList>
+<Loc EndOffset="967" SrcFileId="1" StartOffset="821"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="42">
+<BasicBoolTerm Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="856" SrcFileId="1" StartOffset="825"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="1013" SrcFileId="1" StartOffset="977"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="746" SrcFileId="1" StartOffset="743"/>
+<LocList>
+<Loc EndOffset="1018" SrcFileId="1" StartOffset="743"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="45">
+<BasicBoolTerm Intrnl_Id="46">
+<LocList>
+<Loc EndOffset="773" SrcFileId="1" StartOffset="759"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+<Keyword EndOffset="654" SrcFileId="1" StartOffset="651"/>
+<LocList>
+<Loc EndOffset="1022" SrcFileId="1" StartOffset="651"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="47">
+<BasicBoolTerm Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="685" SrcFileId="1" StartOffset="670"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="123" HierarchyLvlTypeId="5" Intrnl_Id="49" Name="ChooseTests">
+<Header>
+<Loc EndOffset="1102" SrcFileId="1" StartOffset="1031"/>
+</Header>
+<LocList>
+<Loc EndOffset="1358" SrcFileId="1" StartOffset="1031"/>
+</LocList>
+<StmntSeq Intrnl_Id="50">
+<LocList>
+<Loc EndOffset="1130" SrcFileId="1" StartOffset="1110"/>
+<Loc EndOffset="1355" SrcFileId="1" StartOffset="1136"/>
+</LocList>
+<BasicStmnt CovItemId="S16" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="51">
+<LocList>
+<Loc EndOffset="1130" SrcFileId="1" StartOffset="1110"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S17" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="52" MltplExecId="L3-2" MltplExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" NvrExecId="L3-0" NvrExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OnceExecutedId="L3-1" OnceExecutedPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="53">
+<LocList>
+<Loc EndOffset="1355" SrcFileId="1" StartOffset="1176"/>
+</LocList>
+<CondStmnt CovItemId="S18" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="54">
+<Branch CovItemId="B5" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="false" Intrnl_Id="55">
+<Cond/>
+<LocList>
+<Loc EndOffset="1284" SrcFileId="1" StartOffset="1259"/>
+</LocList>
+<StmntSeq Intrnl_Id="56">
+<LocList>
+<Loc EndOffset="1284" SrcFileId="1" StartOffset="1259"/>
+</LocList>
+<BasicStmnt CovItemId="S19" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="57">
+<LocList>
+<Loc EndOffset="1284" SrcFileId="1" StartOffset="1259"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Implct="false" Intrnl_Id="58">
+<Cond>
+<Loc EndOffset="1292" SrcFileId="1" StartOffset="1288"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1355" SrcFileId="1" StartOffset="1293"/>
+</LocList>
+<StmntSeq Intrnl_Id="59">
+<LocList>
+<Loc EndOffset="1323" SrcFileId="1" StartOffset="1299"/>
+<Loc EndOffset="1350" SrcFileId="1" StartOffset="1328"/>
+</LocList>
+<BasicStmnt CovItemId="S20" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="60">
+<LocList>
+<Loc EndOffset="1323" SrcFileId="1" StartOffset="1299"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S21" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="61">
+<LocList>
+<Loc EndOffset="1350" SrcFileId="1" StartOffset="1328"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1178" SrcFileId="1" StartOffset="1176"/>
+<LocList>
+<Loc EndOffset="1355" SrcFileId="1" StartOffset="1176"/>
+</LocList>
+<RootTerm CovItemId="C6" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="62">
+<BasicBoolTerm Intrnl_Id="63">
+<LocList>
+<Loc EndOffset="1253" SrcFileId="1" StartOffset="1179"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+<Keyword EndOffset="1139" SrcFileId="1" StartOffset="1136"/>
+<LocList>
+<Loc EndOffset="1355" SrcFileId="1" StartOffset="1136"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="64">
+<BasicBoolTerm Intrnl_Id="65">
+<LocList>
+<Loc EndOffset="1166" SrcFileId="1" StartOffset="1160"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="124" HierarchyLvlTypeId="5" Intrnl_Id="66" Name="Max">
+<Header>
+<Loc EndOffset="1397" SrcFileId="1" StartOffset="1364"/>
+</Header>
+<LocList>
+<Loc EndOffset="1454" SrcFileId="1" StartOffset="1364"/>
+</LocList>
+<StmntSeq Intrnl_Id="67">
+<LocList>
+<Loc EndOffset="1451" SrcFileId="1" StartOffset="1405"/>
+</LocList>
+<BasicStmnt CovItemId="S22" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="68">
+<LocList>
+<Loc EndOffset="1451" SrcFileId="1" StartOffset="1405"/>
+</LocList>
+<QMO CovItemId="Q0" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="69">
+<LocList>
+<Loc EndOffset="1442" SrcFileId="1" StartOffset="1412"/>
+</LocList>
+<QMO_E CovItemId="Q0-0" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="70">
+<LocList>
+<Loc EndOffset="1446" SrcFileId="1" StartOffset="1445"/>
+</LocList>
+</QMO_E>
+<QMO_E CovItemId="Q0-1" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="71">
+<LocList>
+<Loc EndOffset="1450" SrcFileId="1" StartOffset="1449"/>
+</LocList>
+</QMO_E>
+</QMO>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="125" HierarchyLvlTypeId="5" Intrnl_Id="72" Name="trivialCase">
+<Header>
+<Loc EndOffset="1491" SrcFileId="1" StartOffset="1460"/>
+</Header>
+<LocList>
+<Loc EndOffset="1597" SrcFileId="1" StartOffset="1460"/>
+</LocList>
+<StmntSeq Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="1569" SrcFileId="1" StartOffset="1499"/>
+<Loc EndOffset="1594" SrcFileId="1" StartOffset="1575"/>
+</LocList>
+<LoopStmnt CovItemId="S23" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="74" MltplExecId="L4-2" MltplExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" NvrExecId="L4-0" NvrExecPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OnceExecutedId="L4-1" OnceExecutedPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="75">
+<LocList>
+<Loc EndOffset="1569" SrcFileId="1" StartOffset="1547"/>
+</LocList>
+<BasicStmnt CovItemId="S24" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="76">
+<LocList>
+<Loc EndOffset="1569" SrcFileId="1" StartOffset="1547"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="1502" SrcFileId="1" StartOffset="1499"/>
+<LocList>
+<Loc EndOffset="1569" SrcFileId="1" StartOffset="1499"/>
+</LocList>
+<RootTerm CovItemId="C7" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="77">
+<BasicBoolTerm Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="1537" SrcFileId="1" StartOffset="1515"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S25" CovItemPrefix="org.adaptsuite.sorter.AdaptSuiteSorter.java" Intrnl_Id="79">
+<LocList>
+<Loc EndOffset="1594" SrcFileId="1" StartOffset="1575"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="128" HierarchyLvlTypeId="4" Intrnl_Id="80" Name="TestsSuiteSorter">
+<Header>
+<Loc EndOffset="86" SrcFileId="2" StartOffset="57"/>
+</Header>
+<LocList>
+<Loc EndOffset="396" SrcFileId="2" StartOffset="57"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="127" HierarchyLvlTypeId="5" Intrnl_Id="81" Name="TestSorter">
+<Header>
+<Loc EndOffset="114" SrcFileId="2" StartOffset="90"/>
+</Header>
+<LocList>
+<Loc EndOffset="394" SrcFileId="2" StartOffset="90"/>
+</LocList>
+<StmntSeq Intrnl_Id="82">
+<LocList>
+<Loc EndOffset="156" SrcFileId="2" StartOffset="122"/>
+<Loc EndOffset="188" SrcFileId="2" StartOffset="159"/>
+<Loc EndOffset="238" SrcFileId="2" StartOffset="191"/>
+<Loc EndOffset="301" SrcFileId="2" StartOffset="241"/>
+<Loc EndOffset="367" SrcFileId="2" StartOffset="307"/>
+<Loc EndOffset="391" SrcFileId="2" StartOffset="370"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="83">
+<LocList>
+<Loc EndOffset="156" SrcFileId="2" StartOffset="122"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="84">
+<LocList>
+<Loc EndOffset="188" SrcFileId="2" StartOffset="159"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="85">
+<LocList>
+<Loc EndOffset="238" SrcFileId="2" StartOffset="191"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="86">
+<LocList>
+<Loc EndOffset="301" SrcFileId="2" StartOffset="241"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S5" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="87" MltplExecId="L1-2" MltplExecPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" NvrExecId="L1-0" NvrExecPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" OnceExecutedId="L1-1" OnceExecutedPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="88">
+<LocList>
+<Loc EndOffset="367" SrcFileId="2" StartOffset="333"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="89">
+<LocList>
+<Loc EndOffset="367" SrcFileId="2" StartOffset="333"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="310" SrcFileId="2" StartOffset="307"/>
+<LocList>
+<Loc EndOffset="367" SrcFileId="2" StartOffset="307"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="90">
+<BasicBoolTerm Intrnl_Id="91">
+<LocList>
+<Loc EndOffset="323" SrcFileId="2" StartOffset="320"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="92">
+<LocList>
+<Loc EndOffset="391" SrcFileId="2" StartOffset="370"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

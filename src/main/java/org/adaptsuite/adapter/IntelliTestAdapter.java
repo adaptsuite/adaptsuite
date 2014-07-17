@@ -1,6 +1,6 @@
-package org.adaptsuite.adapter;
+package main.java.org.adaptsuite.adapter;
 
-import org.adaptsuite.prop.TestProperties;
+import main.java.org.adaptsuite.prop.TestProperties;
 
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;

@@ -1,0 +1,6 @@
+coverage/*
+target
+.classpath
+.project
+.settings
+

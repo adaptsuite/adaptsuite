@@ -1,8 +1,10 @@
-package org.adaptsuite.test;
+package test.java.org.adaptsuite.test;
+
+import main.java.org.adaptsuite.adapter.GenericTest;
 
 import org.junit.Test;
 
-public class TestCase3Sec {
+public class TestCase3Sec extends GenericTest {
 
 	@Test
 	public void testThree() throws InterruptedException{

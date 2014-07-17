@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1394708729732" TestSessionContainerId="684bf789-b469-4b37-a9e6-0b32e382a2fe" version="1.0">
+<SrcFileList>
+<SrcFile Content="package org.adaptsuite.sorter;&#10;&#10;import org.junit.Test;&#10;&#10;&#10;public class TestsSuiteSorter {&#10;&#9;@Test&#10;&#9;public void TestSorter() {&#10;&#9;&#9;&#10;&#9;&#9;Long[] time = {5L,3L,2L};&#10;&#9;&#9;Long[] failures = {1L,1L,1L};&#10;&#9;&#9;AdaptSuiteSorter test = new AdaptSuiteSorter();&#10;&#9;&#9;boolean[] checked = test.FindTests(time, failures, 3, 5L);&#10;&#9;&#9;&#10;&#9;&#9;for(int i=0; i&lt;3; i++)&#10;&#9;&#9;&#9;System.out.print(checked[i] + &quot; &quot;);&#10;&#9;&#9;System.out.println();&#10;&#9;}&#10;}&#10;" Filename="TestsSuiteSorter.java" Intrnl_Id="1"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="2"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="3"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="4"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="5"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="6" HierarchyLvlTypeId="5" Intrnl_Id="6" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="5" HierarchyLvlTypeId="2" Intrnl_Id="7" Name="org">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="4" HierarchyLvlTypeId="2" Intrnl_Id="8" Name="adaptsuite">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="3" HierarchyLvlTypeId="2" Intrnl_Id="9" Name="sorter">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="2" HierarchyLvlTypeId="3" Intrnl_Id="10" Name="TestsSuiteSorter">
+<Header>
+<Loc EndOffset="86" SrcFileId="1" StartOffset="57"/>
+</Header>
+<LocList>
+<Loc EndOffset="393" SrcFileId="1" StartOffset="57"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="1" HierarchyLvlTypeId="4" Intrnl_Id="11" Name="TestSorter">
+<Header>
+<Loc EndOffset="121" SrcFileId="1" StartOffset="90"/>
+</Header>
+<LocList>
+<Loc EndOffset="391" SrcFileId="1" StartOffset="90"/>
+</LocList>
+<StmntSeq Intrnl_Id="12">
+<LocList>
+<Loc EndOffset="154" SrcFileId="1" StartOffset="129"/>
+<Loc EndOffset="186" SrcFileId="1" StartOffset="157"/>
+<Loc EndOffset="236" SrcFileId="1" StartOffset="189"/>
+<Loc EndOffset="297" SrcFileId="1" StartOffset="239"/>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="303"/>
+<Loc EndOffset="388" SrcFileId="1" StartOffset="367"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="13">
+<LocList>
+<Loc EndOffset="154" SrcFileId="1" StartOffset="129"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="14">
+<LocList>
+<Loc EndOffset="186" SrcFileId="1" StartOffset="157"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="15">
+<LocList>
+<Loc EndOffset="236" SrcFileId="1" StartOffset="189"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="16">
+<LocList>
+<Loc EndOffset="297" SrcFileId="1" StartOffset="239"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S5" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="17" MltplExecId="L1-2" MltplExecPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" NvrExecId="L1-0" NvrExecPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" OnceExecutedId="L1-1" OnceExecutedPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="18">
+<LocList>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="329"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="19">
+<LocList>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="329"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="306" SrcFileId="1" StartOffset="303"/>
+<LocList>
+<Loc EndOffset="364" SrcFileId="1" StartOffset="303"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="20">
+<BasicBoolTerm Intrnl_Id="21">
+<LocList>
+<Loc EndOffset="319" SrcFileId="1" StartOffset="316"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="org.adaptsuite.sorter.TestsSuiteSorter.java" Intrnl_Id="22">
+<LocList>
+<Loc EndOffset="388" SrcFileId="1" StartOffset="367"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

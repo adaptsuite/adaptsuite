@@ -1,4 +1,4 @@
-package org.adaptsuite.adapter;
+package main.java.org.adaptsuite.adapter;
 
 import java.util.ArrayList;
 

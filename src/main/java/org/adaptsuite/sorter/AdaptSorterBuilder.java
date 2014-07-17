@@ -1,11 +1,11 @@
-package org.adaptsuite.sorter;
+package main.java.org.adaptsuite.sorter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import org.adaptsuite.adapter.IntelliTestAdapter;
+import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 
 /** Ideia dessa classe é escolher o maior número de testes possíveis dentro do 
  *  tempo limite, e não mais pegar os primeiros testes até estourar o tempo.*/

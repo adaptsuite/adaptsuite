@@ -1,4 +1,4 @@
-package org.adaptsuite.suite;
+package main.java.org.adaptsuite.suite;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
@@ -7,9 +7,9 @@ import java.util.Queue;
 
 import junit.framework.TestSuite;
 
-import org.adaptsuite.adapter.IntelliTestAdapter;
-import org.adaptsuite.adapter.IntelliTestAdapters;
-import org.adaptsuite.sorter.AdaptSorterBuilder;
+import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
+import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
+import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
 import org.junit.extensions.cpsuite.SuiteType;

@@ -1,4 +1,5 @@
 coverage/*
+codecover/*
 target
 .classpath
 .project
