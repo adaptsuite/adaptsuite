@@ -2,11 +2,10 @@ package test.java.org.adaptsuite.test;
 
 import static org.junit.Assert.*;
 
-import main.java.org.adaptsuite.adapter.GenericTest;
 
 import org.junit.Test;
 
-public class TestCase2Sec extends GenericTest {
+public class TestCase2Sec {
 	
 
 	@Test
