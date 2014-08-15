@@ -5,12 +5,12 @@ import java.util.List;
 public class AdaptSuiteSorter {
 
 	private boolean[] chosenTests;
-	private Long[][] knaspackTabble;
+	private Double[][] knaspackTabble;
 	
 	public boolean[]  findTests (List<TestData> testData, int queueSize, Long maxTime) {		
 		
 		chosenTests = new boolean[queueSize];
-		knaspackTabble = new Long [queueSize + 1][maxTime.intValue() + 1];
+		knaspackTabble = new Double [queueSize + 1][maxTime.intValue() + 1];
 		
 		boolean shouldRunTrivialCase = testData.get(0).getLastExecutionTime() == 0 || maxTime == Long.MAX_VALUE;
 		if(shouldRunTrivialCase)
@@ -24,18 +24,19 @@ public class AdaptSuiteSorter {
 	
 	private void testsValue (List<TestData> testData, int queueSize, Long maxTime) {
 		
-		Long a, b;
+		Double a, b;
 		
 		for (int time = 0; time <= maxTime; time++) {
-			knaspackTabble[0][time] = (Long)0L;	
+			knaspackTabble[0][time] = 0.0;	
 			for (int i = 1; i <= queueSize; i++) {
 				a = knaspackTabble[i-1][time];
 				Long lastExecutionTime = testData.get(i-1).getLastExecutionTime();
 				Long testFailures = testData.get(i-1).getFailures();
+				Double coverage = testData.get(i-1).getCoverage();
 				if (lastExecutionTime.intValue() > time)
-					b = (Long)0L;
+					b = 0.0;
 				else
-					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + testFailures;
+					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + ( testFailures * coverage);
 				
 				knaspackTabble[i][time] = Max(a, b);
 			}
@@ -58,9 +59,9 @@ public class AdaptSuiteSorter {
 	}
 	
 	
-	private Long Max (Long a, Long b) {
+	private Double Max (Double a, Double b) {
 		
-		return a.longValue() >= b.longValue() ? a : b;
+		return a >= b ? a : b;
 	}
 	
 	

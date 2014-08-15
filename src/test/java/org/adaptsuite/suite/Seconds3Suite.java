@@ -1,4 +1,4 @@
-package test.java.org.adaptsuite.test;
+package test.java.org.adaptsuite.suite;
 
 import junit.framework.TestSuite;
 

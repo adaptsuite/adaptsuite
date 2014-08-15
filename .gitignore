@@ -1,7 +1,9 @@
 coverage/*
 codecover/*
+bin/*
 target
 .classpath
 .project
 .settings
+cpsuite-1.2.5.jar
 
