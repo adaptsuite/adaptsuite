@@ -25,7 +25,7 @@ public class AdaptSorterBuilder {
 	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
 		testData = new ArrayList<TestData>();		
 		for (IntelliTestAdapter obj : testQueue) {
-			testData.add(new TestData(obj.getTime(),obj.getFailure(), 1.0));
+			testData.add( new TestData( obj.getTime(),obj.getFailure(), obj.getCoverage() ) );
 		}
 	}
 

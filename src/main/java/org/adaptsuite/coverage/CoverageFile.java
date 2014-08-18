@@ -15,7 +15,7 @@ public class CoverageFile {
 		file = new File("Coverage");
 	}
 	
-	public void getCoverage(String testName)
+	public double getCoverage(String testName)
 	{
 		String prop[];
 		
@@ -24,7 +24,10 @@ public class CoverageFile {
 			
 			try {
 				for(String line; (line = br.readLine()) != null; ) {
-				    line.length();
+				    prop = line.split(" ");
+				    
+				    if(isTheRightTest(prop[0], testName))
+				    		return Double.parseDouble(prop[1]);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -33,8 +36,14 @@ public class CoverageFile {
 			System.out.println("Couldn't open the 'Coverage' file");
 		}
 		
+		return 1.0;
+		
 		
 
+	}
+
+	private boolean isTheRightTest(String curTestName, String testName) {
+		return curTestName.equals(testName);
 	}
 
 }

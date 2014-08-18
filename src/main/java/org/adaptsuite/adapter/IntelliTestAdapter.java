@@ -18,8 +18,6 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	}
 	
 	public void run(TestResult result) {
-		CoverageFile cf = new CoverageFile();
-		cf.getCoverage(this.name);
 		long before = System.currentTimeMillis();
 		super.run(result);
 		long total = System.currentTimeMillis() - before;
@@ -56,5 +54,10 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		if(failure == null)
 			failure = 0L;
 		return failure;
+	}
+
+	public Double getCoverage() {
+		CoverageFile cf = new CoverageFile();
+		return cf.getCoverage(this.name);
 	}
 }
