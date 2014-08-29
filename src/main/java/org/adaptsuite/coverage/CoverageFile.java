@@ -54,7 +54,7 @@ public class CoverageFile {
         try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
 			
-			bw.write("\n" + testName + " 1.0");
+			bw.write(testName + " 1.0");
 			bw.close();
 			
 		} catch (IOException e) {

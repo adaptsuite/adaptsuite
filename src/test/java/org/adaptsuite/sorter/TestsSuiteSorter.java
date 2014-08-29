@@ -8,6 +8,8 @@ import main.java.org.adaptsuite.sorter.TestData;
 
 
 public class TestsSuiteSorter {
+	
+	//@Test
 	public void TestSorter() {
 		List<TestData> testData = Arrays.asList(
 				new TestData(5000L, 1L, 1.0),

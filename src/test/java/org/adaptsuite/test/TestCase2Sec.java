@@ -1,8 +1,5 @@
 package test.java.org.adaptsuite.test;
 
-import static org.junit.Assert.*;
-
-
 import org.junit.Test;
 
 public class TestCase2Sec {
