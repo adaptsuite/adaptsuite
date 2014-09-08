@@ -1,6 +1,6 @@
 package main.java.org.adaptsuite.adapter;
 
-import main.java.org.adaptsuite.coverage.CoverageFile;
+import main.java.org.adaptsuite.coverage.RetrieveCoverage;
 import main.java.org.adaptsuite.prop.TestProperties;
 
 import junit.framework.JUnit4TestAdapter;
@@ -57,7 +57,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	}
 
 	public Double getCoverage() {
-		CoverageFile cf = new CoverageFile();
-		return cf.getCoverage(this.name);
+		RetrieveCoverage rc = new RetrieveCoverage();
+		return rc.getCoverage(this.name);
 	}
 }
