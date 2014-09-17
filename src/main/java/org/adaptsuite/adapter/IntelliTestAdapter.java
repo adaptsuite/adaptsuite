@@ -23,6 +23,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		long total = System.currentTimeMillis() - before;
 		propertiesManager.set("run.miliseconds",total);
 		propertiesManager.set("failure.value", setFailure(result) );
+		propertiesManager.set("coverage.value", getCoverage());
 		propertiesManager.close();
 	}
 
@@ -34,11 +35,21 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		if ((result.errorCount() + result.failureCount()) == 0)
 		{
 			if (failureValue > 1)
-				failureValue -= 1;
+				{
+					failureValue /= 2;
+					propertiesManager.set("coverage.value", setCoverage());
+				}
 		}
 		
 		failureValue += result.errorCount() + result.failureCount();
 		return failureValue;
+		
+	}
+	
+	private double setCoverage()
+	{
+		RetrieveCoverage rc = new RetrieveCoverage();
+		return rc.getCoverage(this.name);	
 		
 	}
 
@@ -57,7 +68,9 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	}
 
 	public Double getCoverage() {
-		RetrieveCoverage rc = new RetrieveCoverage();
-		return rc.getCoverage(this.name);
+		Double coverage = propertiesManager.getDouble("coverage.value");
+		if (coverage == null)
+			coverage = setCoverage();	
+		return coverage;
 	}
 }

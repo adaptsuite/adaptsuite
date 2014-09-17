@@ -64,4 +64,12 @@ public class TestProperties {
 			return null;
 		return Long.valueOf(value);
 	}
+	
+	public Double getDouble(String key)
+	{
+		String value = get(key);
+		if(value == null)
+			return null;
+		return Double.valueOf(value);
+	}
 }
