@@ -49,7 +49,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	private double setCoverage()
 	{
 		RetrieveCoverage rc = new RetrieveCoverage();
-		return rc.getCoverage(this.name);	
+		return rc.searchParam(this.name);	
 		
 	}
 

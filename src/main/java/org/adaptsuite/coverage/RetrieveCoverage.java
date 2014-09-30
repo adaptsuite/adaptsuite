@@ -11,18 +11,11 @@ import org.jsoup.select.Elements;
 public class RetrieveCoverage {
 	
 	
-	public double getCoverage(String testName) {
-		
-		String strCoverage = searchTable(testName);
-		
-		return Double.parseDouble(strCoverage.substring(0, strCoverage.length()-1)) /100.0;
-	}
-	
-	
-	private String searchTable (String testName) {
+	public Double searchParam (String testName) {
 		
 		File file = new File("Cov/" + testName +".html");
 		Document doc;
+		Double missed = 0.0, param = 1.0;
 		
 		try {
 			int col = 0;
@@ -32,7 +25,7 @@ public class RetrieveCoverage {
 	        Elements tableHeaderEles = tableElements.select("thead tr td");
 	        
 	        for (int i = 0; i < tableHeaderEles.size(); i++) {
-	            if (tableHeaderEles.get(i).text().equals("Cov."))
+	            if (tableHeaderEles.get(i).text().equals("Lines"))
 	            	{
 	            		col = i;
 	            		break;
@@ -42,7 +35,8 @@ public class RetrieveCoverage {
 	        Elements tableRowElements = tableElements.select(":not(thead) tr");
 	        Element row = tableRowElements.get(0);
             Elements rowItems = row.select("td");
-            return rowItems.get(col).text();
+            missed = Double.parseDouble( rowItems.get(col-1).text() );
+            param = Double.parseDouble( rowItems.get(col).text() );
             
 	        
 	        
@@ -50,7 +44,8 @@ public class RetrieveCoverage {
 			e.printStackTrace();
 		}
 		
-		return "100%";
+		return 1.0 - (missed/param);
+		
 	}
 
 }
