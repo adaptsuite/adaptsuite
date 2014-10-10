@@ -4,12 +4,12 @@ public class TestData {
 
 	private Long lastExecutionTime;
 	private Long failures;
-	private Double coverage;
+	private Double lineCoverage;
 
 	public TestData(Long time, Long failures, Double coverage) {
 		this.lastExecutionTime = time;
 		this.failures = failures;
-		this.coverage = coverage;
+		this.lineCoverage = coverage;
 	}
 
 	public Long getLastExecutionTime() {
@@ -20,8 +20,8 @@ public class TestData {
 		return failures;
 	}
 	
-	public Double getCoverage(){
-		return coverage;
+	public Double getLineCoverage(){
+		return lineCoverage;
 	}
 
 	

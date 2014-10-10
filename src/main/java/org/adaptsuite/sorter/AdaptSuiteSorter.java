@@ -32,7 +32,7 @@ public class AdaptSuiteSorter {
 				a = knaspackTabble[i-1][time];
 				Long lastExecutionTime = testData.get(i-1).getLastExecutionTime();
 				Long testFailures = testData.get(i-1).getFailures();
-				Double coverage = testData.get(i-1).getCoverage();
+				Double coverage = testData.get(i-1).getLineCoverage();
 				if (lastExecutionTime.intValue() > time)
 					b = 0.0;
 				else

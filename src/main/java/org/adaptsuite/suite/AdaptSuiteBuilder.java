@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Queue;
 
 import junit.framework.TestSuite;
-
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
+import main.java.org.adaptsuite.sorter.DegreeOfImportance;
+
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
 import org.junit.extensions.cpsuite.SuiteType;
@@ -17,6 +18,7 @@ import org.junit.extensions.cpsuite.SuiteType;
 public final class AdaptSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
+	private DegreeOfImportance importance;
 	private long availableTimeMili = Long.MAX_VALUE;
 
 	public AdaptSuiteBuilder(Class<?>... tests) {
@@ -49,7 +51,9 @@ public final class AdaptSuiteBuilder {
 	
 	
 	private void addTests (TestSuite suite) {
-		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili);
+		importance = new DegreeOfImportance(1L,1L,1L);
+		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
+				this.importance);
 		int i = 0;		
 		while (testQueue.peek() != null) {
 			if(chosenTests[i++])
