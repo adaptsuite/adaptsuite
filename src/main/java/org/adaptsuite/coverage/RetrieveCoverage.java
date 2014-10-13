@@ -11,41 +11,57 @@ import org.jsoup.select.Elements;
 public class RetrieveCoverage {
 	
 	
-	public Double searchParam (String testName) {
+	public Double getCoverages (String testName) {
 		
 		File file = new File("Cov/" + testName +".html");
 		Document doc;
-		Double missed = 0.0, param = 1.0;
+		Double [] coverages = new Double[2];
+		Double [] lineCoverage;
+		Double [] reachedClasses;
+		
 		
 		try {
-			int col = 0;
+
 			doc = Jsoup.parse(file, "UTF-8", "http://"+ testName +".com/");
-	        Elements tableElements = doc.select("table");
-	        
-	        Elements tableHeaderEles = tableElements.select("thead tr td");
-	        
-	        for (int i = 0; i < tableHeaderEles.size(); i++) {
-	            if (tableHeaderEles.get(i).text().equals("Lines"))
-	            	{
-	            		col = i;
-	            		break;
-	            	}
-	        }
-	        
-	        Elements tableRowElements = tableElements.select(":not(thead) tr");
-	        Element row = tableRowElements.get(0);
-            Elements rowItems = row.select("td");
-            missed = Double.parseDouble( rowItems.get(col-1).text() );
-            param = Double.parseDouble( rowItems.get(col).text() );
-            
+	        lineCoverage = searchParam(doc, "Lines");
+	        coverages[0] = 1.0 - (lineCoverage[0]/lineCoverage[1]);;
+	        reachedClasses = searchParam(doc, "Classes");
+	        coverages[1] = reachedClasses[1] - reachedClasses[0]; 
 	        
 	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return 1.0 - (missed/param);
+		return coverages[0];
 		
+	}
+	
+	Double [] searchParam (Document doc, String param) {
+		
+		int col = 0;		
+		Double [] params = new Double[2];
+		
+		Elements tableElements = doc.select("table");
+        
+        Elements tableHeaderEles = tableElements.select("thead tr td");
+        
+        for (int i = 0; i < tableHeaderEles.size(); i++) {
+            if (tableHeaderEles.get(i).text().equals(param))
+            	{
+            		col = i;
+            		break;
+            	}
+        }
+        
+        Elements tableRowElements = tableElements.select(":not(thead) tr");
+        Element row = tableRowElements.get(0);
+        Elements rowItems = row.select("td");
+        params[0] = Double.parseDouble( rowItems.get(col-1).text() );
+        params[1] = Double.parseDouble( rowItems.get(col).text() );
+        
+        return params;
+        
 	}
 
 }

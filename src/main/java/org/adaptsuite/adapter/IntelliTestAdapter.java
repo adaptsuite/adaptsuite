@@ -2,7 +2,6 @@ package main.java.org.adaptsuite.adapter;
 
 import main.java.org.adaptsuite.coverage.RetrieveCoverage;
 import main.java.org.adaptsuite.prop.TestProperties;
-
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;
 
@@ -23,9 +22,11 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		long total = System.currentTimeMillis() - before;
 		propertiesManager.set("run.miliseconds",total);
 		propertiesManager.set("failure.value", setFailure(result) );
-		propertiesManager.set("coverage.value", getCoverage());
+		propertiesManager.set("lines.coverage", getLineCoverage());
+		propertiesManager.set("classes.reached", getClassesReached());
 		propertiesManager.close();
 	}
+
 
 	private Long setFailure(TestResult result) {
 		Long failureValue = propertiesManager.getLong("failure.value");
@@ -49,7 +50,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	private double setCoverage()
 	{
 		RetrieveCoverage rc = new RetrieveCoverage();
-		return rc.searchParam(this.name);	
+		return rc.getCoverages(this.name);	
 		
 	}
 
@@ -67,10 +68,17 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		return failure;
 	}
 
-	public Double getCoverage() {
-		Double coverage = propertiesManager.getDouble("coverage.value");
+	public Double getLineCoverage() {
+		Double coverage = propertiesManager.getDouble("lines.coverage");
 		if (coverage == null)
 			coverage = setCoverage();	
 		return coverage;
+	}
+	
+	private Long getClassesReached() {
+		Long classes = propertiesManager.getLong("classes.reached");
+		if (classes == null)
+			classes = (long) setCoverage();	
+		return classes;
 	}
 }

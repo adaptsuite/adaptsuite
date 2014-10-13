@@ -12,9 +12,9 @@ public class TestRetriveCoverage {
 	public void TestGetRightCoverage() {
 		RetrieveCoverage rc = new RetrieveCoverage();
 		
-		assertEquals(0.02, rc.searchParam("TestCase2Sec"), 10e-2);
-		assertEquals(0.02, rc.searchParam("TestCase3Sec"), 10e-2);
-		assertEquals(0.02, rc.searchParam("TestCase5Sec"), 10e-2);
+		assertEquals(0.02, rc.getCoverages("TestCase2Sec"), 10e-2);
+		assertEquals(0.02, rc.getCoverages("TestCase3Sec"), 10e-2);
+		assertEquals(0.02, rc.getCoverages("TestCase5Sec"), 10e-2);
 		
 
 	}
