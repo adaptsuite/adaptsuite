@@ -47,7 +47,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		
 	}
 	
-	private double setCoverage()
+	private Double[] setCoverage()
 	{
 		RetrieveCoverage rc = new RetrieveCoverage();
 		return rc.getCoverages(this.name);	
@@ -71,14 +71,14 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	public Double getLineCoverage() {
 		Double coverage = propertiesManager.getDouble("lines.coverage");
 		if (coverage == null)
-			coverage = setCoverage();	
+			coverage = setCoverage()[0];	
 		return coverage;
 	}
 	
-	private Long getClassesReached() {
+	public Long getClassesReached() {
 		Long classes = propertiesManager.getLong("classes.reached");
 		if (classes == null)
-			classes = (long) setCoverage();	
+			classes = setCoverage()[1].longValue();	
 		return classes;
 	}
 }

@@ -16,6 +16,7 @@ public class AdaptSorterBuilder {
 		
 		AdaptSuiteSorter testSorter = new AdaptSuiteSorter();
 		int queueSize = testQueue.size();
+		this.importance = importance;
 		
 		buildArrays(testQueue, queueSize);
 		return testSorter.findTests(testData, queueSize, maxTime);
@@ -24,7 +25,7 @@ public class AdaptSorterBuilder {
 	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
 		testData = new ArrayList<TestData>();		
 		for (IntelliTestAdapter obj : testQueue) {
-			testData.add( new TestData( obj.getTime(),obj.getFailure(), obj.getLineCoverage() ) );
+			testData.add( new TestData( obj.getTime(),obj.getFailure(), obj.getLineCoverage(), obj.getClassesReached() ) );
 		}
 	}
 

@@ -31,12 +31,16 @@ public class AdaptSuiteSorter {
 			for (int i = 1; i <= queueSize; i++) {
 				a = knaspackTabble[i-1][time];
 				Long lastExecutionTime = testData.get(i-1).getLastExecutionTime();
+				
 				Long testFailures = testData.get(i-1).getFailures();
 				Double coverage = testData.get(i-1).getLineCoverage();
+				Long classes = testData.get(i-1).getClassesReached();
+				
 				if (lastExecutionTime.intValue() > time)
 					b = 0.0;
 				else
-					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + ( testFailures * coverage);
+					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + 
+					( testFailures.doubleValue() * coverage * classes.doubleValue() );
 				
 				knaspackTabble[i][time] = Max(a, b);
 			}

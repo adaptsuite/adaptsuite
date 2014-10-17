@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 public class RetrieveCoverage {
 	
 	
-	public Double getCoverages (String testName) {
+	public Double[] getCoverages (String testName) {
 		
 		File file = new File("Cov/" + testName +".html");
 		Document doc;
@@ -33,7 +33,7 @@ public class RetrieveCoverage {
 			e.printStackTrace();
 		}
 		
-		return coverages[0];
+		return coverages;
 		
 	}
 	
