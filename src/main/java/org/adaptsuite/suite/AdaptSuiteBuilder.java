@@ -18,7 +18,7 @@ import org.junit.extensions.cpsuite.SuiteType;
 public final class AdaptSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
-	private DegreeOfImportance importance;
+	private Long[] importance;
 	private long availableTimeMili = Long.MAX_VALUE;
 
 	public AdaptSuiteBuilder(Class<?>... tests) {
@@ -42,16 +42,20 @@ public final class AdaptSuiteBuilder {
 		return tests;
 	}
 
-	public TestSuite build() {
+	public TestSuite build(Long[] importance) {
 		String runtimeDescription = getSuiteDescription();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
+		this.importance = importance;
 		addTests(suite);
 		return suite;
 	}
 	
+	public TestSuite build() {
+		return this.build(new Long[]{1L, 1L, 1L});
+	}
+	
 	
 	private void addTests (TestSuite suite) {
-		importance = new DegreeOfImportance(1L,1L,1L);
 		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance);
 		int i = 0;		

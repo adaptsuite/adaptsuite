@@ -18,7 +18,7 @@ public class TestsSuiteSorter {
 	//@Test
 	public void TestSorter() {
 		
-		DegreeOfImportance importance = new DegreeOfImportance(1L,1L,1L);
+		Long[] importance = {1L,1L,1L};
 		List<TestData> testData = Arrays.asList(
 				new TestData(5000L, 1L, 1.0, 1L),
 				new TestData(3000L, 1L, 1.0, 1L),
