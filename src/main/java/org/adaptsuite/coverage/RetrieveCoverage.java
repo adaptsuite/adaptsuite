@@ -1,6 +1,7 @@
 package main.java.org.adaptsuite.coverage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -29,6 +30,9 @@ public class RetrieveCoverage {
 	        coverages[1] = reachedClasses[1] - reachedClasses[0]; 
 	        
 	        
+		} catch (FileNotFoundException e) {
+			coverages[0] = 1.0;
+			coverages[1] = 1.0;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

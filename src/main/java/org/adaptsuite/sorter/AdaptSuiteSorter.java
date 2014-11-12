@@ -12,8 +12,7 @@ public class AdaptSuiteSorter {
 		chosenTests = new boolean[queueSize];
 		knaspackTabble = new Double [queueSize + 1][maxTime.intValue() + 1];
 		
-		boolean shouldRunTrivialCase = testData.get(0).getLastExecutionTime() == 0 || maxTime == Long.MAX_VALUE;
-		if(shouldRunTrivialCase)
+		if(shouldRunTrivialCase (testData, queueSize))
 			return trivialCase();
 					
 		testsValue(testData, queueSize, maxTime);
@@ -22,6 +21,7 @@ public class AdaptSuiteSorter {
 		
 	}
 	
+
 	private void testsValue (List<TestData> testData, int queueSize, Long maxTime) {
 		
 		Double a, b;
@@ -75,5 +75,13 @@ public class AdaptSuiteSorter {
 			chosenTests[i] = true;
 		
 		return chosenTests;
+	}
+	
+	private boolean shouldRunTrivialCase(List<TestData> testData, int queueSize) {
+		
+		for (int i = 0; i < queueSize; i++)
+			if(testData.get(i).getLastExecutionTime() != 0)
+					return false;
+		return true;
 	}
 }
