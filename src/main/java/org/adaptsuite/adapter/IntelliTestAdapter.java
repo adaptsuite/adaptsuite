@@ -64,7 +64,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	public Long getFailure() {
 		Long failure = propertiesManager.getLong("failure.value");
 		if(failure == null)
-			failure = 0L;
+			failure = 1L;
 		return failure;
 	}
 
