@@ -9,6 +9,10 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 
 	private TestProperties propertiesManager;
 	private String name;
+	private long runtime;
+	private Long failures;
+	private Double coverage;
+	private Long classes;
 
 	public IntelliTestAdapter(Class<?> newTestClass, String name) {
 		super(newTestClass);
@@ -19,8 +23,8 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	public void run(TestResult result) {
 		long before = System.currentTimeMillis();
 		super.run(result);
-		long total = System.currentTimeMillis() - before;
-		propertiesManager.set("run.miliseconds",total);
+		this.runtime = System.currentTimeMillis() - before;
+		propertiesManager.set("run.miliseconds",this.runtime);
 		propertiesManager.set("failure.value", setFailure(result) );
 		propertiesManager.set("lines.coverage", getLineCoverage());
 		propertiesManager.set("classes.reached", getClassesReached());
@@ -43,17 +47,28 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		}
 		
 		failureValue += result.errorCount() + result.failureCount();
-		return failureValue;
+		this.failures = failureValue;
+		return this.failures;
 		
 	}
 	
-	private Double[] setCoverage()
-	{
+	private Double setCoverage() {
 		RetrieveCoverage rc = new RetrieveCoverage();
-		return rc.getCoverages(this.name);	
+		this.coverage = rc.getCoverages(this.name)[0];
+		return this.coverage;
 		
 	}
+	
+	private Long setClassesReached() {
+		RetrieveCoverage rc = new RetrieveCoverage();
+		this.classes = rc.getCoverages(this.name)[1].longValue();
+		return this.classes;
+	}
 
+	public String getName() {
+		return this.name;
+	}
+	
 	public Long getTime() {
 		Long mili = propertiesManager.getLong("run.miliseconds");
 		if(mili == null)
@@ -71,14 +86,14 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	public Double getLineCoverage() {
 		Double coverage = propertiesManager.getDouble("lines.coverage");
 		if (coverage == null)
-			coverage = setCoverage()[0];	
+			coverage = setCoverage();	
 		return coverage;
 	}
 	
 	public Long getClassesReached() {
 		Long classes = propertiesManager.getLong("classes.reached");
 		if (classes == null)
-			classes = setCoverage()[1].longValue();	
+			classes = setClassesReached();	
 		return classes;
 	}
 }
