@@ -2,14 +2,15 @@ package main.java.org.adaptsuite.suite;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
+import java.util.Map;
 
 import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
-import main.java.org.adaptsuite.sorter.DegreeOfImportance;
 
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
@@ -42,16 +43,20 @@ public final class AdaptSuiteBuilder {
 		return tests;
 	}
 
-	public TestSuite build(Long[] importance) {
+	public TestSuite build(Map<String, Long> relevance) {
 		String runtimeDescription = getSuiteDescription();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		this.importance = importance;
+		assignRelevance(relevance);
 		addTests(suite);
 		return suite;
 	}
 	
 	public TestSuite build() {
-		return this.build(new Long[]{1L, 1L, 1L});
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		relevance.put("error", 1L);
+		relevance.put("coverage", 1L);
+		relevance.put("accessedClass", 1L);
+		return this.build(relevance);
 	}
 	
 	
@@ -64,6 +69,28 @@ public final class AdaptSuiteBuilder {
 				suite.addTest(testQueue.peek());			
 			testQueue.poll();
 		}
+	}
+	
+	private void assignRelevance(Map<String, Long> relevance) {
+		Long errorValue = relevance.get("error");
+		Long coverageValue = relevance.get("coverage");
+		Long classesValue = relevance.get("accessedClass");
+		
+		this.importance = new Long[3];
+		
+		if (errorValue != null)
+			this.importance[0] = errorValue;
+		else
+			this.importance[0] = 1L;
+		if (coverageValue != null)
+			this.importance[1] = coverageValue;
+		else
+			this.importance[1] = 1L;
+		if (classesValue != null)
+			this.importance[2] = classesValue;
+		else
+			this.importance[2] = 1L;
+		
 	}
 
 
