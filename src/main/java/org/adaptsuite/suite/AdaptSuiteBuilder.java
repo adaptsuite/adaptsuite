@@ -12,6 +12,7 @@ import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
 import main.java.org.adaptsuite.sorter.RelevanceConstants;
+import main.java.org.adaptsuite.coverage.RetrieveCSVData;
 
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
@@ -50,6 +51,7 @@ public final class AdaptSuiteBuilder {
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		assignRelevance(relevance);
 		addTests(suite);
+		saveTestData();
 		return suite;
 	}
 	
@@ -65,12 +67,16 @@ public final class AdaptSuiteBuilder {
 	private void addTests (TestSuite suite) {
 		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance);
-		int i = 0;		
-		while (testQueue.peek() != null) {
+		int i = 0;
+		for (IntelliTestAdapter obj : testQueue) {
 			if(chosenTests[i++])
-				suite.addTest(testQueue.peek());			
-			testQueue.poll();
+				suite.addTest(obj);
 		}
+	}
+	
+	private void saveTestData() {
+		RetrieveCSVData csv = new RetrieveCSVData();
+		csv.writer(this.testQueue);
 	}
 	
 	private void assignRelevance(Map<String, Long> relevance) {

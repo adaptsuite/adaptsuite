@@ -28,7 +28,7 @@ public class AdaptSorterBuilder {
 			testData.add( new TestData( 
 					obj.getTime(),
 					obj.getFailure() * this.importance.getFailureIportance(), 
-					obj.getLineCoverage() * this.importance.getLineCoverageImportance(), 
+					obj.getCoverage() * this.importance.getLineCoverageImportance(), 
 					obj.getClassesReached() * this.importance.getAcessedClassImportance() ) 
 			);
 		}

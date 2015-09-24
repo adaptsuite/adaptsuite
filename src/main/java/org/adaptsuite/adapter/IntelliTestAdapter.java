@@ -7,48 +7,42 @@ import junit.framework.TestResult;
 
 public class IntelliTestAdapter extends JUnit4TestAdapter{
 
-	private TestProperties propertiesManager;
 	private String name;
 	private long runtime;
 	private Long failures;
 	private Double coverage;
 	private Long classes;
 
-	public IntelliTestAdapter(Class<?> newTestClass, String name) {
+	public IntelliTestAdapter(Class<?> newTestClass, String name, String[] testData) {
 		super(newTestClass);
-		propertiesManager = TestProperties.newInstance(newTestClass);
 		this.name = name;
+		this.runtime = Long.parseLong(testData[1]);
+		this.failures = Long.parseLong(testData[2]);
+		this.coverage = Double.parseDouble(testData[3]);
+		this.classes = Long.parseLong(testData[4]);
 	}
 	
 	public void run(TestResult result) {
 		long before = System.currentTimeMillis();
 		super.run(result);
 		this.runtime = System.currentTimeMillis() - before;
-		propertiesManager.set("run.miliseconds",this.runtime);
-		propertiesManager.set("failure.value", setFailure(result) );
-		propertiesManager.set("lines.coverage", getLineCoverage());
-		propertiesManager.set("classes.reached", getClassesReached());
-		propertiesManager.close();
+		setFailures(result);
 	}
 
 
-	private Long setFailure(TestResult result) {
-		Long failureValue = propertiesManager.getLong("failure.value");
-		if(failureValue == null)
-			failureValue = 1L;
+	private void setFailures(TestResult result) {
 		
-		if ((result.errorCount() + result.failureCount()) == 0)
-		{
-			if (failureValue > 1)
-				{
-					failureValue /= 2;
-					propertiesManager.set("coverage.value", setCoverage());
-				}
+		if ((result.errorCount() + result.failureCount()) == 0)	{
+			if (this.failures > 1) {
+				this.failures /= 2;
+				/*Will try to update the coverage/classes reached if we see a 
+				 * decrease in the failure count*/
+				setCoverage();
+				setClassesReached();
+			}
 		}
 		
-		failureValue += result.errorCount() + result.failureCount();
-		this.failures = failureValue;
-		return this.failures;
+		this.failures += result.errorCount() + result.failureCount();
 		
 	}
 	
@@ -70,30 +64,18 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	}
 	
 	public Long getTime() {
-		Long mili = propertiesManager.getLong("run.miliseconds");
-		if(mili == null)
-			mili = 0L;
-		return mili;
+		return this.runtime;
 	}
 	
 	public Long getFailure() {
-		Long failure = propertiesManager.getLong("failure.value");
-		if(failure == null)
-			failure = 1L;
-		return failure;
+		return this.failures;
 	}
 
-	public Double getLineCoverage() {
-		Double coverage = propertiesManager.getDouble("lines.coverage");
-		if (coverage == null)
-			coverage = setCoverage();	
-		return coverage;
+	public Double getCoverage() {
+		return this.coverage;
 	}
 	
 	public Long getClassesReached() {
-		Long classes = propertiesManager.getLong("classes.reached");
-		if (classes == null)
-			classes = setClassesReached();	
-		return classes;
+		return this.classes;
 	}
 }

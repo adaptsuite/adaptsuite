@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 
@@ -12,9 +11,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
-import sun.org.mozilla.javascript.ObjToIntMap;
 
-public class REtrieveCSVData {
+public class RetrieveCSVData {
 	private final String FILE_NAME = "adaptsuite.csv";
 	
 	public void writer(Queue<IntelliTestAdapter> testQueue) {
@@ -25,7 +23,7 @@ public class REtrieveCSVData {
 						obj.getName(),
 						obj.getTime().toString(),
 						obj.getFailure().toString(),
-						obj.getLineCoverage().toString(),
+						obj.getCoverage().toString(),
 						obj.getClassesReached().toString()
 				};
 				writer.writeNext(entry);
@@ -36,6 +34,12 @@ public class REtrieveCSVData {
 		}
 	}
 	
+	/*The returned fields of the csv are as follow:
+	 * 0: name
+	 * 1: last runtime
+	 * 2: number of failures/errors
+	 * 3: coverage as it is in the Eclemma report
+	 * 4: number of reached classes as it is in the Eclemma report*/
 	public List<String[]> reader() {
 		List<String[]> myEntries = new ArrayList<String[]>();
 	    try {
