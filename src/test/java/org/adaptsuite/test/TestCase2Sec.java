@@ -1,10 +1,10 @@
 package test.java.org.adaptsuite.test;
 
+
 import org.junit.Test;
 
 public class TestCase2Sec {
 	
-
 	@Test
 	public void testTwo() throws InterruptedException{
 		System.out.println("Testing two...");

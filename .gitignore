@@ -8,4 +8,6 @@ jsoup-1.8.1.jar
 junit.jar
 junit3.8.1.jar.zip
 junit4-4.8.2.jar.zip
+opencsv-3.5.jar
+*.swp
 

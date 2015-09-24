@@ -12,7 +12,7 @@ import org.junit.runners.AllTests;
 public class Seconds5Suite {
 	public static TestSuite suite() {
 		Map <String, Long> relevance = new HashMap<String, Long>();
-		relevance.put("error", 2L);
+		relevance.put(AdaptSuiteBuilder.getErrorConstant(), 2L);
 		return new AdaptSuiteBuilder().sec(5).build(relevance);
 	}
 }

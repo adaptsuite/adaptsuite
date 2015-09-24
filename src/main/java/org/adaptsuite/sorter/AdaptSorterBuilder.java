@@ -18,7 +18,7 @@ public class AdaptSorterBuilder {
 		int queueSize = testQueue.size();
 		this.importance = new DegreeOfImportance(importance);
 		
-		buildArrays(testQueue, queueSize);
+		buildArrays(testQueue, queueSize);	
 		return testSorter.findTests(testData, queueSize, maxTime);
 	}
 	

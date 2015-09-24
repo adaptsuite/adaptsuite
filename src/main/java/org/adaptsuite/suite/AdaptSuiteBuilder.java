@@ -11,6 +11,7 @@ import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
+import main.java.org.adaptsuite.sorter.RelevanceConstants;
 
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;
@@ -21,6 +22,7 @@ public final class AdaptSuiteBuilder {
 	private Queue<IntelliTestAdapter> testQueue;
 	private Long[] importance;
 	private long availableTimeMili = Long.MAX_VALUE;
+	
 
 	public AdaptSuiteBuilder(Class<?>... tests) {
 		if (tests.length == 0) {
@@ -53,9 +55,9 @@ public final class AdaptSuiteBuilder {
 	
 	public TestSuite build() {
 		Map <String, Long> relevance = new HashMap<String, Long>();
-		relevance.put("error", 1L);
-		relevance.put("coverage", 1L);
-		relevance.put("accessedClass", 1L);
+		relevance.put(RelevanceConstants.ERROR_RELEVANCE, 1L);
+		relevance.put(RelevanceConstants.COVERAGE_RELEVANCE, 1L);
+		relevance.put(RelevanceConstants.CLASSES_RELEVANCE, 1L);
 		return this.build(relevance);
 	}
 	
@@ -72,9 +74,9 @@ public final class AdaptSuiteBuilder {
 	}
 	
 	private void assignRelevance(Map<String, Long> relevance) {
-		Long errorValue = relevance.get("error");
-		Long coverageValue = relevance.get("coverage");
-		Long classesValue = relevance.get("accessedClass");
+		Long errorValue = relevance.get(RelevanceConstants.ERROR_RELEVANCE);
+		Long coverageValue = relevance.get(RelevanceConstants.COVERAGE_RELEVANCE);
+		Long classesValue = relevance.get(RelevanceConstants.CLASSES_RELEVANCE);
 		
 		this.importance = new Long[3];
 		
@@ -113,5 +115,20 @@ public final class AdaptSuiteBuilder {
 	public AdaptSuiteBuilder sec(int seconds) {
 		this.availableTimeMili = seconds * 1000;
 		return this;
+	}
+	
+	
+	public static String getErrorConstant() {
+		return RelevanceConstants.ERROR_RELEVANCE;
+	}
+	
+	
+	public static String getCoverageConstant() {
+		return RelevanceConstants.COVERAGE_RELEVANCE;
+	}
+	
+	
+	public static String getClassConstant() {
+		return RelevanceConstants.CLASSES_RELEVANCE;
 	}
 }
