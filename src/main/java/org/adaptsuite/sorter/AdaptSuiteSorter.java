@@ -18,7 +18,6 @@ public class AdaptSuiteSorter {
 		testsValue(testData, queueSize, maxTime);
 		chooseTests(testData, queueSize, maxTime);
 		return chosenTests;
-		
 	}
 	
 
