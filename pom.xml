@@ -36,7 +36,7 @@
     		<groupId>net.sf.opencsv</groupId>
 		    <artifactId>opencsv</artifactId>
     		<version>3.5</version>
-		</dependency
+		</dependency>
 	</dependencies>
 
 	<repositories>

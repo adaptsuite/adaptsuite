@@ -2,7 +2,7 @@ bin/
 Cov/
 adaptsuite.jar
 cpsuite-1.2.5.jar
-jsoup-1.8.1.jar
+jsoup-1.8.*.jar
 .resources/
 .sessions.html
 junit.jar
@@ -10,4 +10,5 @@ junit3.8.1.jar.zip
 junit4-4.8.2.jar.zip
 opencsv-3.5.jar
 *.swp
-
+.classpath
+.project

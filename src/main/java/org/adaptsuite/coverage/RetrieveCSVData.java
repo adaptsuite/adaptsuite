@@ -30,7 +30,7 @@ public class RetrieveCSVData {
 			}
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			return;
 		}
 	}
 	
