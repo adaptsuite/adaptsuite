@@ -54,7 +54,7 @@ public final class AdaptSuiteBuilder {
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		assignRelevance(relevance);
 		addTests(suite);
-		for (IntelliTestAdapter obj : testQueue) {
+		for (IntelliTestAdapter obj : this.testsToRun) {
 			TestResult result = new TestResult();
 			obj.run(result);
 		}
