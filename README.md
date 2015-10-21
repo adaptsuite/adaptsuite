@@ -5,7 +5,7 @@ Allows you to run different testing suites (fastest to slowest) of JUnit tests a
 coverage, user degree of importance, etc.
 
 You may need the following libraries:
-- jsoup-1.7.3.jar
+- jsoup-1.8.3.jar
 - cpsuite-1.2.5.jar
 - opencsv-3.5.jar
 
