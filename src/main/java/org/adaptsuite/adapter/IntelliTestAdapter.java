@@ -1,7 +1,6 @@
 package main.java.org.adaptsuite.adapter;
 
 import main.java.org.adaptsuite.coverage.RetrieveCoverage;
-import main.java.org.adaptsuite.prop.TestProperties;
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;
 
@@ -12,6 +11,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	private Long failures;
 	private Double coverage;
 	private Long classes;
+	private Long lastExecution;
 
 	public IntelliTestAdapter(Class<?> newTestClass, String name, String[] testData) {
 		super(newTestClass);
@@ -20,6 +20,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		this.failures = Long.parseLong(testData[2]);
 		this.coverage = Double.parseDouble(testData[3]);
 		this.classes = Long.parseLong(testData[4]);
+		this.lastExecution = Long.parseLong(testData[4]);
 	}
 	
 	public void run(TestResult result) {
@@ -29,6 +30,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		setFailures(result);
 		setCoverage();
 		setClassesReached();
+		setLastExecution();
 	}
 
 
@@ -39,8 +41,9 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 				this.failures /= 2;
 				/*Will try to update the coverage/classes reached if we see a 
 				 * decrease in the failure count*/
-				setCoverage();
-				setClassesReached();
+				this.setCoverage();
+				this.setClassesReached();
+				this.setLastExecution();
 			}
 		}
 		
@@ -59,6 +62,10 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		RetrieveCoverage rc = new RetrieveCoverage();
 		this.classes = rc.getCoverages(this.name)[1].longValue();
 		return this.classes;
+	}
+	
+	private void setLastExecution() {
+		this.lastExecution = 0L;
 	}
 
 	public String getName() {
@@ -79,5 +86,9 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	
 	public Long getClassesReached() {
 		return this.classes;
+	}
+	
+	public Long getLastExecution() {
+		return this.lastExecution;
 	}
 }

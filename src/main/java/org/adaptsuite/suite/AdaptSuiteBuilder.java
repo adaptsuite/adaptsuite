@@ -90,8 +90,9 @@ public final class AdaptSuiteBuilder {
 		Long errorValue = relevance.get(RelevanceConstants.ERROR_RELEVANCE);
 		Long coverageValue = relevance.get(RelevanceConstants.COVERAGE_RELEVANCE);
 		Long classesValue = relevance.get(RelevanceConstants.CLASSES_RELEVANCE);
+		Long lastExecution = relevance.get(RelevanceConstants.LAST_EXECUTION_RELEVANCE);
 		
-		this.importance = new Long[3];
+		this.importance = new Long[4];
 		
 		if (errorValue != null)
 			this.importance[0] = errorValue;
@@ -105,6 +106,10 @@ public final class AdaptSuiteBuilder {
 			this.importance[2] = classesValue;
 		else
 			this.importance[2] = 1L;
+		if (lastExecution != null)
+			this.importance[3] = lastExecution;
+		else
+			this.importance[3] = 1L;
 		
 	}
 
@@ -143,5 +148,9 @@ public final class AdaptSuiteBuilder {
 	
 	public static String getClassConstant() {
 		return RelevanceConstants.CLASSES_RELEVANCE;
+	}
+	
+	public static String getLastExecutionConstant() {
+		return RelevanceConstants.LAST_EXECUTION_RELEVANCE;
 	}
 }

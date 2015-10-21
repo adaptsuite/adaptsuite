@@ -19,12 +19,14 @@ public class RetrieveCSVData {
 		try {
 			CSVWriter writer = new CSVWriter(new FileWriter(FILE_NAME), ',');
 			for (IntelliTestAdapter obj : testQueue) {
+				Long lastExecution = obj.getLastExecution() + 1L; 
 				String [] entry = {
 						obj.getName(),
 						obj.getTime().toString(),
 						obj.getFailure().toString(),
 						obj.getCoverage().toString(),
-						obj.getClassesReached().toString()
+						obj.getClassesReached().toString(),
+						lastExecution.toString()
 				};
 				writer.writeNext(entry);
 			}

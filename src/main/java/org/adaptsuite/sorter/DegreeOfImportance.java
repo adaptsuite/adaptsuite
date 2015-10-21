@@ -5,11 +5,13 @@ public class DegreeOfImportance {
 	private Long failureImportance;
 	private Long lineCoverageImportance;
 	private Long acessedClassImportance;
+	private Long lastExecutionImportance;
 	
 	public DegreeOfImportance (Long [] weights) {
 		this.failureImportance =  setDegree (weights[0]);
 		this.lineCoverageImportance = setDegree (weights[1]);
 		this.acessedClassImportance = setDegree (weights[2]);
+		this.acessedClassImportance = setDegree (weights[3]);
 	}
 	
 	public Long setDegree(Long degree) {
@@ -21,15 +23,19 @@ public class DegreeOfImportance {
 	}
 	
 	public Long getFailureIportance() {
-		return failureImportance;
+		return this.failureImportance;
 	}
 	
 	public Long getLineCoverageImportance(){
-		return lineCoverageImportance;
+		return this.lineCoverageImportance;
 	}
 	
 	public Long getAcessedClassImportance () {
-		return acessedClassImportance;
+		return this.acessedClassImportance;
+	}
+	
+	public Long getLastExecutionImportance () {
+		return this.lastExecutionImportance;
 	}
 
 }

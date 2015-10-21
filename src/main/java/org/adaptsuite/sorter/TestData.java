@@ -6,30 +6,34 @@ public class TestData {
 	private Long failures;
 	private Double lineCoverage;
 	private Long classesReached;
+	private Long lastExecution;
 
-	public TestData(Long time, Long failures, Double coverage, Long classes) {
+	public TestData(Long time, Long failures, Double coverage, Long classes, Long lastExecution) {
 		this.lastExecutionTime = time;
 		this.failures = failures;
 		this.lineCoverage = coverage;
 		this.classesReached = classes;
+		this.lastExecution = lastExecution;
 	}
 
 	public Long getLastExecutionTime() {
-		return lastExecutionTime;
+		return this.lastExecutionTime;
 	}
 
 	public Long getFailures() {
-		return failures;
+		return this.failures;
 	}
 	
 	public Double getLineCoverage(){
-		return lineCoverage;
+		return this.lineCoverage;
 	}
 	
 	public Long getClassesReached() {
-		return classesReached;
+		return this.classesReached;
 	}
 
-	
+	public Long getLastExecution() {
+		return this.lastExecution;
+	}
 	
 }

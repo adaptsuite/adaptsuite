@@ -29,7 +29,8 @@ public class AdaptSorterBuilder {
 					obj.getTime(),
 					obj.getFailure() * this.importance.getFailureIportance(), 
 					obj.getCoverage() * this.importance.getLineCoverageImportance(), 
-					obj.getClassesReached() * this.importance.getAcessedClassImportance() ) 
+					obj.getClassesReached() * this.importance.getAcessedClassImportance(),
+					obj.getLastExecution() * this.importance.getFailureIportance()) 
 			);
 		}
 	}

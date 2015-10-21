@@ -6,5 +6,6 @@ public interface RelevanceConstants {
 	static public final String ERROR_RELEVANCE = "error";
 	static public final String COVERAGE_RELEVANCE = "coverage";
 	static public final String CLASSES_RELEVANCE = "accessedClass";
+	static public final String LAST_EXECUTION_RELEVANCE = "lastExecution";
 
 }
