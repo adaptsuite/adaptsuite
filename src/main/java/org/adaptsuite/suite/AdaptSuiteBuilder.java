@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Map;
 
+import junit.framework.TestResult;
 import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
@@ -21,6 +22,7 @@ import org.junit.extensions.cpsuite.SuiteType;
 public final class AdaptSuiteBuilder {
 
 	private Queue<IntelliTestAdapter> testQueue;
+	private Queue<IntelliTestAdapter> testsToRun;
 	private Long[] importance;
 	private long availableTimeMili = Long.MAX_VALUE;
 	
@@ -32,6 +34,7 @@ public final class AdaptSuiteBuilder {
 		IntelliTestAdapters adapters = new IntelliTestAdapters(tests);
 		Collections.sort(adapters, new AdaptSorter());
 		this.testQueue = new ArrayDeque<IntelliTestAdapter>(adapters);
+		this.testsToRun = new ArrayDeque<IntelliTestAdapter>();
 	}
 
 	private Class<?>[] scanForTests() {
@@ -51,6 +54,10 @@ public final class AdaptSuiteBuilder {
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		assignRelevance(relevance);
 		addTests(suite);
+		for (IntelliTestAdapter obj : testQueue) {
+			TestResult result = new TestResult();
+			obj.run(result);
+		}
 		saveTestData();
 		return suite;
 	}
@@ -68,9 +75,9 @@ public final class AdaptSuiteBuilder {
 		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance);
 		int i = 0;
-		for (IntelliTestAdapter obj : testQueue) {
+		for (IntelliTestAdapter obj : this.testQueue) {
 			if(chosenTests[i++])
-				suite.addTest(obj);
+				this.testsToRun.add(obj);
 		}
 	}
 	

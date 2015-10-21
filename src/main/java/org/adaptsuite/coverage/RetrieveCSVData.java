@@ -47,7 +47,7 @@ public class RetrieveCSVData {
 			myEntries = reader.readAll();
 			reader.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 		return myEntries;
 	}

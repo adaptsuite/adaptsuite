@@ -27,6 +27,8 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		super.run(result);
 		this.runtime = System.currentTimeMillis() - before;
 		setFailures(result);
+		setCoverage();
+		setClassesReached();
 	}
 
 

@@ -12,3 +12,4 @@ opencsv-3.5.jar
 *.swp
 .classpath
 .project
+adaptsuite.csv

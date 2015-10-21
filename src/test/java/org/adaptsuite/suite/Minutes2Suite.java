@@ -8,7 +8,7 @@ import org.junit.runners.AllTests;
 
 @RunWith(AllTests.class)
 public class Minutes2Suite {
-	public static TestSuite suite() {
-		return new AdaptSuiteBuilder().min(2).build();
+	public static void suite() {
+		new AdaptSuiteBuilder().min(2).build();
 	}
 }
