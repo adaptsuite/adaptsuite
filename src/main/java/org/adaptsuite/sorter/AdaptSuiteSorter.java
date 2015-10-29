@@ -33,13 +33,14 @@ public class AdaptSuiteSorter {
 				
 				Long testFailures = testData.get(i-1).getFailures();
 				Double coverage = testData.get(i-1).getLineCoverage();
-				Long classes = testData.get(i-1).getClassesReached();
+				Long lastExecution = testData.get(i-1).getLastExecution();
+				Double frequency = testData.get(i-1).getFrequency();
 				
 				if (lastExecutionTime.intValue() > time)
 					b = 0.0;
 				else
 					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + 
-					( testFailures.doubleValue() * coverage * classes.doubleValue() );
+					( testFailures.doubleValue() * coverage * lastExecution.doubleValue() * frequency );
 				
 				knaspackTabble[i][time] = Max(a, b);
 			}

@@ -16,9 +16,9 @@ public class TestsSuiteSorter {
 	public void TestSorter() {
 		
 		List<TestData> testData = Arrays.asList(
-				new TestData(5000L, 1L, 1.0, 1L, 1L),
-				new TestData(3000L, 1L, 1.0, 1L, 1L),
-				new TestData(2000L, 1L, 1.0, 1L, 1L)
+				new TestData(5000L, 1L, 1.0, 1L, 1.0),
+				new TestData(3000L, 1L, 1.0, 1L, 1.0),
+				new TestData(2000L, 1L, 1.0, 1L, 1.0)
 		);
 		AdaptSuiteSorter test = new AdaptSuiteSorter();
 		

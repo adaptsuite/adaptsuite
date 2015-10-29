@@ -64,9 +64,6 @@ public final class AdaptSuiteBuilder {
 	
 	public TestSuite build() {
 		Map <String, Long> relevance = new HashMap<String, Long>();
-		relevance.put(RelevanceConstants.ERROR_RELEVANCE, 1L);
-		relevance.put(RelevanceConstants.COVERAGE_RELEVANCE, 1L);
-		relevance.put(RelevanceConstants.CLASSES_RELEVANCE, 1L);
 		return this.build(relevance);
 	}
 	
@@ -89,8 +86,8 @@ public final class AdaptSuiteBuilder {
 	private void assignRelevance(Map<String, Long> relevance) {
 		Long errorValue = relevance.get(RelevanceConstants.ERROR_RELEVANCE);
 		Long coverageValue = relevance.get(RelevanceConstants.COVERAGE_RELEVANCE);
-		Long classesValue = relevance.get(RelevanceConstants.CLASSES_RELEVANCE);
 		Long lastExecution = relevance.get(RelevanceConstants.LAST_EXECUTION_RELEVANCE);
+		Long frequency = relevance.get(RelevanceConstants.FREQUENCY_RELEVANCE);
 		
 		this.importance = new Long[4];
 		
@@ -102,11 +99,11 @@ public final class AdaptSuiteBuilder {
 			this.importance[1] = coverageValue;
 		else
 			this.importance[1] = 1L;
-		if (classesValue != null)
-			this.importance[2] = classesValue;
+		if (lastExecution != null)
+			this.importance[2] = lastExecution;
 		else
 			this.importance[2] = 1L;
-		if (lastExecution != null)
+		if (frequency != null)
 			this.importance[3] = lastExecution;
 		else
 			this.importance[3] = 1L;
@@ -146,11 +143,11 @@ public final class AdaptSuiteBuilder {
 	}
 	
 	
-	public static String getClassConstant() {
-		return RelevanceConstants.CLASSES_RELEVANCE;
-	}
-	
 	public static String getLastExecutionConstant() {
 		return RelevanceConstants.LAST_EXECUTION_RELEVANCE;
+	}
+	
+	public static String getFrequencyConstant() {
+		return RelevanceConstants.FREQUENCY_RELEVANCE;
 	}
 }

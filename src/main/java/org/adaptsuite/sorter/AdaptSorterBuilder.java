@@ -25,12 +25,13 @@ public class AdaptSorterBuilder {
 	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
 		testData = new ArrayList<TestData>();		
 		for (IntelliTestAdapter obj : testQueue) {
+			Double frequency =(double)(obj.getTotalExecutions() / obj.getToolExecutions());
 			testData.add( new TestData( 
 					obj.getTime(),
 					obj.getFailure() * this.importance.getFailureIportance(), 
 					obj.getCoverage() * this.importance.getLineCoverageImportance(), 
-					obj.getClassesReached() * this.importance.getAcessedClassImportance(),
-					obj.getLastExecution() * this.importance.getFailureIportance()) 
+					obj.getLastExecution() * this.importance.getFailureIportance(),
+					frequency * this.importance.getFrequencyImportance())
 			);
 		}
 	}
