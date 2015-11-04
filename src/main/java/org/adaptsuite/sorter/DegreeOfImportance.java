@@ -6,12 +6,14 @@ public class DegreeOfImportance {
 	private Long lineCoverageImportance;
 	private Long lastExecutionImportance;
 	private Long frequencyImportance;
+	private Long failureFreqImportance;
 	
 	public DegreeOfImportance (Long [] weights) {
 		this.failureImportance =  setDegree(weights[0]);
 		this.lineCoverageImportance = setDegree(weights[1]);
 		this.lastExecutionImportance = setDegree(weights[2]);
 		this.frequencyImportance = setDegree(weights[3]);
+		this.failureFreqImportance = setDegree(weights[4]);
 	}
 	
 	public Long setDegree(Long degree) {
@@ -37,6 +39,10 @@ public class DegreeOfImportance {
 	
 	public Long getFrequencyImportance () {
 		return this.frequencyImportance;
+	}
+	
+	public Long getHistFailureImportance () {
+		return this.failureFreqImportance;
 	}
 
 }

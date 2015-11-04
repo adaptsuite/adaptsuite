@@ -13,6 +13,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	private Long lastExecution;
 	private Long totalExecutions;
 	private Long toolExecutions;
+	private Long histFailures;
 
 	public IntelliTestAdapter(Class<?> newTestClass, String name, String[] testData) {
 		super(newTestClass);
@@ -23,6 +24,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		this.lastExecution = Long.parseLong(testData[4]);
 		this.totalExecutions = Long.parseLong(testData[5]);
 		this.toolExecutions = Long.parseLong(testData[6]);
+		this.histFailures = Long.parseLong(testData[7]);
 	}
 	
 	public void run(TestResult result) {
@@ -89,5 +91,9 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 	
 	public Long getToolExecutions() {
 		return this.toolExecutions;
+	}
+	
+	public Long getHistFailures() {
+		return this.histFailures;
 	}
 }

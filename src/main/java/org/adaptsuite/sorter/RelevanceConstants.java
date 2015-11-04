@@ -7,5 +7,6 @@ public interface RelevanceConstants {
 	static public final String COVERAGE_RELEVANCE = "coverage";
 	static public final String LAST_EXECUTION_RELEVANCE = "lastExecution";
 	static public final String FREQUENCY_RELEVANCE = "frequency";
+	static public final String FAILURE_FREQUENCY_RELEVANCE = "failureFrequency";
 
 }

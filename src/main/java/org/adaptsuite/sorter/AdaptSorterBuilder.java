@@ -12,20 +12,26 @@ public class AdaptSorterBuilder {
 	private List<TestData> testData;
 	private DegreeOfImportance importance;
 
-	public boolean[] chooseTests (Queue<IntelliTestAdapter> testQueue, Long maxTime, Long[] importance) {
+	public boolean[] chooseTests (
+			Queue<IntelliTestAdapter> testQueue, 
+			Long maxTime, 
+			Long[] importance, 
+			boolean isReverse) {
 		
 		AdaptSuiteSorter testSorter = new AdaptSuiteSorter();
 		int queueSize = testQueue.size();
 		this.importance = new DegreeOfImportance(importance);
 		
-		buildArrays(testQueue, queueSize);	
+		buildArrays(testQueue, queueSize, isReverse);	
 		return testSorter.findTests(testData, queueSize, maxTime);
 	}
 	
-	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize) {
+	private void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize, boolean isReverse) {
 		testData = new ArrayList<TestData>();		
 		for (IntelliTestAdapter obj : testQueue) {
 			Double frequency =(double)(obj.getTotalExecutions() / obj.getToolExecutions());
+			if (isReverse) 
+				frequency = 1 / frequency;
 			testData.add( new TestData( 
 					obj.getTime(),
 					obj.getFailure() * this.importance.getFailureIportance(), 

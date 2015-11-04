@@ -53,13 +53,17 @@ public final class AdaptSuiteBuilder {
 		String runtimeDescription = getSuiteDescription();
 		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
 		assignRelevance(relevance);
-		addTests(suite);
+		addTests(suite, false);
+		this.runTests();
+		return suite;
+	}
+	
+	private void runTests() {
 		for (IntelliTestAdapter obj : this.testsToRun) {
 			TestResult result = new TestResult();
 			obj.run(result);
 		}
 		saveTestData();
-		return suite;
 	}
 	
 	public TestSuite build() {
@@ -68,9 +72,9 @@ public final class AdaptSuiteBuilder {
 	}
 	
 	
-	private void addTests (TestSuite suite) {
+	private void addTests (TestSuite suite, boolean isReverse) {
 		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
-				this.importance);
+				this.importance, isReverse);
 		int i = 0;
 		for (IntelliTestAdapter obj : this.testQueue) {
 			if(chosenTests[i++])

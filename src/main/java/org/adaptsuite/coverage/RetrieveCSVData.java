@@ -20,7 +20,7 @@ public class RetrieveCSVData {
 			CSVWriter writer = new CSVWriter(new FileWriter(FILE_NAME), ',');
 			for (IntelliTestAdapter obj : testQueue) {
 				Long toolExecutions = obj.getToolExecutions() + 1L;
-				Long lastExecution = obj.getLastExecution() + 1L; 
+				Long lastExecution = obj.getLastExecution() + 1L;
 				String [] entry = {
 						obj.getName(),
 						obj.getTime().toString(),
@@ -28,7 +28,8 @@ public class RetrieveCSVData {
 						obj.getCoverage().toString(),
 						lastExecution.toString(),
 						obj.getTotalExecutions().toString(),
-						toolExecutions.toString()
+						toolExecutions.toString(),
+						obj.getHistFailures().toString()
 				};
 				writer.writeNext(entry);
 			}
@@ -45,7 +46,8 @@ public class RetrieveCSVData {
 	 * 3: coverage as it is in the Eclemma report
 	 * 4: last time the test ran 
 	 * 5: number of times the test was chosen
-	 * 6: number of times the tool ran */ 
+	 * 6: number of times the tool ran
+	 * 7: number of failures this test have, historically  */ 
 	public List<String[]> reader() {
 		List<String[]> myEntries = new ArrayList<String[]>();
 	    try {
