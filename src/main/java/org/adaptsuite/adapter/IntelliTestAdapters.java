@@ -8,7 +8,7 @@ import main.java.org.adaptsuite.coverage.RetrieveCSVData;
 @SuppressWarnings("serial")
 public class IntelliTestAdapters extends ArrayList<IntelliTestAdapter>{
 	
-	private String[] mockData = {"Test", "0", "1", "1.0", "1", "1", "1"}; 
+	private String[] mockData = {"Test", "0", "1", "1.0", "1", "1", "1", "1"}; 
 	
 	public IntelliTestAdapters(Class<?>[] tests) {
 		RetrieveCSVData csv = new RetrieveCSVData();

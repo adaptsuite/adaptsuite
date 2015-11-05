@@ -41,7 +41,7 @@ public class DegreeOfImportance {
 		return this.frequencyImportance;
 	}
 	
-	public Long getHistFailureImportance () {
+	public Long getFailFrequencyImportance () {
 		return this.failureFreqImportance;
 	}
 

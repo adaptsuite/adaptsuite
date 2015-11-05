@@ -47,6 +47,7 @@ public class IntelliTestAdapter extends JUnit4TestAdapter{
 		}
 		
 		this.failures += result.errorCount() + result.failureCount();
+		this.histFailures += result.errorCount() + result.failureCount();
 		
 	}
 	

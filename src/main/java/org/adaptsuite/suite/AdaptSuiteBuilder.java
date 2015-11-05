@@ -11,7 +11,7 @@ import junit.framework.TestResult;
 import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
-import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
+import main.java.org.adaptsuite.sorter.SuiteSorter;
 import main.java.org.adaptsuite.sorter.RelevanceConstants;
 import main.java.org.adaptsuite.coverage.RetrieveCSVData;
 
@@ -58,6 +58,15 @@ public final class AdaptSuiteBuilder {
 		return suite;
 	}
 	
+	public TestSuite buildReverse(Map<String, Long> relevance) {
+		String runtimeDescription = getSuiteDescription();
+		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
+		assignRelevance(relevance);
+		addTests(suite, true);
+		this.runTests();
+		return suite;
+	}
+	
 	private void runTests() {
 		for (IntelliTestAdapter obj : this.testsToRun) {
 			TestResult result = new TestResult();
@@ -73,7 +82,7 @@ public final class AdaptSuiteBuilder {
 	
 	
 	private void addTests (TestSuite suite, boolean isReverse) {
-		boolean[] chosenTests = new AdaptSorterBuilder().chooseTests(this.testQueue, this.availableTimeMili, 
+		boolean[] chosenTests = new SuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance, isReverse);
 		int i = 0;
 		for (IntelliTestAdapter obj : this.testQueue) {
@@ -92,8 +101,9 @@ public final class AdaptSuiteBuilder {
 		Long coverageValue = relevance.get(RelevanceConstants.COVERAGE_RELEVANCE);
 		Long lastExecution = relevance.get(RelevanceConstants.LAST_EXECUTION_RELEVANCE);
 		Long frequency = relevance.get(RelevanceConstants.FREQUENCY_RELEVANCE);
+		Long failFrequency =  relevance.get(RelevanceConstants.FAILURE_FREQUENCY_RELEVANCE);
 		
-		this.importance = new Long[4];
+		this.importance = new Long[5];
 		
 		if (errorValue != null)
 			this.importance[0] = errorValue;
@@ -108,9 +118,13 @@ public final class AdaptSuiteBuilder {
 		else
 			this.importance[2] = 1L;
 		if (frequency != null)
-			this.importance[3] = lastExecution;
+			this.importance[3] = frequency;
 		else
 			this.importance[3] = 1L;
+		if (failFrequency != null)
+			this.importance[4] = failFrequency;
+		else
+			this.importance[4] = 1L;
 		
 	}
 
@@ -153,5 +167,9 @@ public final class AdaptSuiteBuilder {
 	
 	public static String getFrequencyConstant() {
 		return RelevanceConstants.FREQUENCY_RELEVANCE;
+	}
+	
+	public static String getFailFrequencyConstant() {
+		return RelevanceConstants.FAILURE_FREQUENCY_RELEVANCE;
 	}
 }
