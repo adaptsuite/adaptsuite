@@ -12,21 +12,17 @@ public class GlottonyAdaptSorterBuilder {
 		
 		for (TestData obj : testData) {
 			
-			Double value = obj.getFailures().doubleValue() * obj.getLineCoverage() * 
-					obj.getLastExecuted().doubleValue() * obj.getFrequency() * obj.getFailFrequency();
+			Double value = obj.getFailures().doubleValue() * obj.getLineCoverage() * obj.getLastExecuted().doubleValue() * obj.getFrequency() * obj.getFailFrequency();
 			
 			obj.setTestValue(value);
 		}
+		
 		Comparator<TestData> comparator = new Comparator<TestData> () {
 			public int compare(TestData a, TestData b) {
-				return (a.getTestValue() > b.getTestValue()) ? 1 : -1;
+				return (a.getTestValue() < b.getTestValue()) ? 1 : -1;
 			}
 		};
-		
 		testData.sort(comparator);
-		for (TestData obj : testData) {
-			System.out.println(obj.getTestValue());
-		}
 		
 		for (int i=0; i < queueSize-1; i++) {
 			if(testData.get(i).getLastExecutionTime() + totalTime < maxTime) {
@@ -34,7 +30,6 @@ public class GlottonyAdaptSorterBuilder {
 				totalTime += testData.get(i).getLastExecutionTime();
 			}
 		}
-		
 		return chosenTests;
 	}	
 

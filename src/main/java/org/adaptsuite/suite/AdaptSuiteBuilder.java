@@ -114,7 +114,19 @@ public final class AdaptSuiteBuilder {
 		return this.suite;
 	}
 	
+	public TestSuite gluttonyBuildReverse(Map<String, Long> relevance) {
+		this.abstractBuild(relevance);
+		this.addGluttonyTests(true);
+		this.runTests();
+		return this.suite;
+	}
+	
 	public TestSuite gluttonyBuild() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.gluttonyBuild(relevance);
+	}
+	
+	public TestSuite gluttonyBuildReverse() {
 		Map <String, Long> relevance = new HashMap<String, Long>();
 		return this.gluttonyBuild(relevance);
 	}

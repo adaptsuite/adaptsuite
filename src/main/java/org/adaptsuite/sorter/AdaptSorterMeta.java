@@ -14,10 +14,11 @@ public abstract class AdaptSorterMeta {
 	void buildArrays (Queue<IntelliTestAdapter> testQueue, int queueSize, boolean isReverse) {
 		testData = new ArrayList<TestData>();		
 		for (IntelliTestAdapter obj : testQueue) {
-			Double frequency =(double)(obj.getTotalExecutions() / obj.getToolExecutions());
+			Double frequency = (obj.getTotalExecutions().doubleValue() / obj.getToolExecutions().doubleValue());
 			if (isReverse) 
-				frequency = 1 / frequency;
-			Double failFrequency = (double)(obj.getHistFailures() / obj.getLastExecution());
+				frequency = 1.0 / frequency;
+			Double failFrequency = (obj.getHistFailures().doubleValue() / obj.getLastExecution().doubleValue());
+			
 			testData.add( new TestData( 
 					obj.getTime(),
 					obj.getFailure() * this.importance.getFailureIportance(), 
