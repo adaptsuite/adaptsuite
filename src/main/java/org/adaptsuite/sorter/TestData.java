@@ -5,7 +5,7 @@ public class TestData {
 	private Long lastExecutionTime;
 	private Long failures;
 	private Double lineCoverage;
-	private Long lastExecution;
+	private Long lastExecuted;
 	private Double frequency;
 	private Double failFrequency;
 	private Double testValue;
@@ -20,7 +20,7 @@ public class TestData {
 		this.lastExecutionTime = time;
 		this.failures = failures;
 		this.lineCoverage = coverage;
-		this.lastExecution = lastExecution;
+		this.lastExecuted = lastExecution;
 		this.frequency = frequency;
 		this.failFrequency = failFrequency;
 	}
@@ -41,8 +41,8 @@ public class TestData {
 		return this.lineCoverage;
 	}
 
-	public Long getLastExecution() {
-		return this.lastExecution;
+	public Long getLastExecuted() {
+		return this.lastExecuted;
 	}
 	
 	public Double getFrequency() {

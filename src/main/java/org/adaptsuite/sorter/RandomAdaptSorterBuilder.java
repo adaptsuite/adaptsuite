@@ -11,9 +11,17 @@ public class RandomAdaptSorterBuilder {
 		Long totalTime = 0L;
 		int index;
 		
-		while(totalTime <= maxTime) {
-			TestData testChosen;
+		chosenTests = new boolean[queueSize];
+		
+		for (int i = 0; i < queueSize; i++) {
 			index = randomGenerator.nextInt(testData.size());
+			TestData test = testData.remove(index);
+			
+			if (totalTime + test.getLastExecutionTime() < maxTime) {
+				chosenTests[index] = true;
+				totalTime += test.getLastExecutionTime();
+			}
+			
 		}
 		
 		return chosenTests;

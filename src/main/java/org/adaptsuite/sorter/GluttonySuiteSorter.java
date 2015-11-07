@@ -4,7 +4,7 @@ import java.util.Queue;
 
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 
-public class RandomSuiteSorter extends AdaptSorterMeta {
+public class GluttonySuiteSorter extends AdaptSorterMeta {
 	
 	public boolean[] chooseTests (
 			Queue<IntelliTestAdapter> testQueue, 
@@ -12,7 +12,7 @@ public class RandomSuiteSorter extends AdaptSorterMeta {
 			Long[] importance, 
 			boolean isReverse) {
 		
-		RandomAdaptSorterBuilder testSorter = new RandomAdaptSorterBuilder();
+		GlottonyAdaptSorterBuilder testSorter = new GlottonyAdaptSorterBuilder();
 		int queueSize = testQueue.size();
 		this.importance = new DegreeOfImportance(importance);
 		

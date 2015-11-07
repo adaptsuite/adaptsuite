@@ -33,7 +33,7 @@ public class AdaptSorterBuilder {
 				
 				Long testFailures = testData.get(i-1).getFailures();
 				Double coverage = testData.get(i-1).getLineCoverage();
-				Long lastExecution = testData.get(i-1).getLastExecution();
+				Long lastExecution = testData.get(i-1).getLastExecuted();
 				Double frequency = testData.get(i-1).getFrequency();
 				Double failFrequency = testData.get(i-1).getFailFrequency();
 				

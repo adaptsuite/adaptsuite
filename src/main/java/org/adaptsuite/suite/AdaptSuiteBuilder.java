@@ -12,6 +12,7 @@ import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.SuiteSorter;
+import main.java.org.adaptsuite.sorter.RandomSuiteSorter;
 import main.java.org.adaptsuite.sorter.RelevanceConstants;
 import main.java.org.adaptsuite.coverage.RetrieveCSVData;
 
@@ -25,6 +26,7 @@ public final class AdaptSuiteBuilder {
 	private Queue<IntelliTestAdapter> testsToRun;
 	private Long[] importance;
 	private long availableTimeMili = Long.MAX_VALUE;
+	private TestSuite suite;
 	
 
 	public AdaptSuiteBuilder(Class<?>... tests) {
@@ -48,23 +50,59 @@ public final class AdaptSuiteBuilder {
 		tests = scannedClasses.toArray(new Class<?>[scannedClasses.size()]);
 		return tests;
 	}
+	
+	private void abstractBuild(Map<String, Long> relevance) {
+		String runtimeDescription = getSuiteDescription();
+		this.suite = new TestSuite("IntelliSuite - " + runtimeDescription);
+		assignRelevance(relevance);
+	}
 
 	public TestSuite build(Map<String, Long> relevance) {
-		String runtimeDescription = getSuiteDescription();
-		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		assignRelevance(relevance);
-		addTests(suite, false);
+		this.abstractBuild(relevance);
+		this.addTests(false);
 		this.runTests();
-		return suite;
+		return this.suite;
 	}
 	
 	public TestSuite buildReverse(Map<String, Long> relevance) {
-		String runtimeDescription = getSuiteDescription();
-		TestSuite suite = new TestSuite("IntelliSuite - " + runtimeDescription);
-		assignRelevance(relevance);
-		addTests(suite, true);
+		this.abstractBuild(relevance);
+		this.addTests(true);
 		this.runTests();
-		return suite;
+		return this.suite;
+	}
+	
+	public TestSuite build() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.build(relevance);
+	}
+	
+	public TestSuite buildReverse() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.buildReverse(relevance);
+	}
+	
+	public TestSuite randomBuild(Map<String, Long> relevance) {
+		this.abstractBuild(relevance);
+		this.addRandomTests(false);
+		this.runTests();
+		return this.suite;
+	}
+	
+	public TestSuite randomBuildReverse(Map<String, Long> relevance) {
+		this.abstractBuild(relevance);
+		this.addRandomTests(true);
+		this.runTests();
+		return this.suite;
+	}
+	
+	public TestSuite randomBuild() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.randomBuild(relevance);
+	}
+	
+	public TestSuite randomBuildReverse() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.randomBuildReverse(relevance);
 	}
 	
 	private void runTests() {
@@ -75,13 +113,17 @@ public final class AdaptSuiteBuilder {
 		saveTestData();
 	}
 	
-	public TestSuite build() {
-		Map <String, Long> relevance = new HashMap<String, Long>();
-		return this.build(relevance);
+	private void addRandomTests(boolean isReverse) {
+		boolean[] chosenTests = new RandomSuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
+				this.importance, isReverse);
+		int i = 0;
+		for (IntelliTestAdapter obj : this.testQueue) {
+			if(chosenTests[i++])
+				this.testsToRun.add(obj);
+		}
 	}
 	
-	
-	private void addTests (TestSuite suite, boolean isReverse) {
+	private void addTests (boolean isReverse) {
 		boolean[] chosenTests = new SuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance, isReverse);
 		int i = 0;
