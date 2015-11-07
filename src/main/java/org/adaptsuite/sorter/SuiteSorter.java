@@ -1,8 +1,6 @@
 package main.java.org.adaptsuite.sorter;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
