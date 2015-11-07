@@ -12,6 +12,7 @@ import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.SuiteSorter;
+import main.java.org.adaptsuite.sorter.GluttonySuiteSorter;
 import main.java.org.adaptsuite.sorter.RandomSuiteSorter;
 import main.java.org.adaptsuite.sorter.RelevanceConstants;
 import main.java.org.adaptsuite.coverage.RetrieveCSVData;
@@ -105,12 +106,36 @@ public final class AdaptSuiteBuilder {
 		return this.randomBuildReverse(relevance);
 	}
 	
+	
+	public TestSuite gluttonyBuild(Map<String, Long> relevance) {
+		this.abstractBuild(relevance);
+		this.addGluttonyTests(false);
+		this.runTests();
+		return this.suite;
+	}
+	
+	public TestSuite gluttonyBuild() {
+		Map <String, Long> relevance = new HashMap<String, Long>();
+		return this.gluttonyBuild(relevance);
+	}
+	
 	private void runTests() {
 		for (IntelliTestAdapter obj : this.testsToRun) {
 			TestResult result = new TestResult();
 			obj.run(result);
 		}
 		saveTestData();
+	}
+	
+	
+	private void addTests (boolean isReverse) {
+		boolean[] chosenTests = new SuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
+				this.importance, isReverse);
+		int i = 0;
+		for (IntelliTestAdapter obj : this.testQueue) {
+			if(chosenTests[i++])
+				this.testsToRun.add(obj);
+		}
 	}
 	
 	private void addRandomTests(boolean isReverse) {
@@ -123,8 +148,8 @@ public final class AdaptSuiteBuilder {
 		}
 	}
 	
-	private void addTests (boolean isReverse) {
-		boolean[] chosenTests = new SuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
+	private void addGluttonyTests(boolean isReverse) {
+		boolean[] chosenTests = new GluttonySuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance, isReverse);
 		int i = 0;
 		for (IntelliTestAdapter obj : this.testQueue) {

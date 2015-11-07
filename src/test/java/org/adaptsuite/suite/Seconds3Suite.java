@@ -9,6 +9,6 @@ import junit.framework.TestSuite;
 @RunWith(AllTests.class)
 public class Seconds3Suite {
 	public static TestSuite suite(){
-		return new AdaptSuiteBuilder().sec(3).build();
+		return new AdaptSuiteBuilder().sec(3).gluttonyBuild();
 	}
 }
