@@ -31,11 +31,11 @@ public class AdaptSorterBuilder {
 				a = knaspackTabble[i-1][time];
 				Long lastExecutionTime = testData.get(i-1).getLastExecutionTime();
 				
-				Long testFailures = testData.get(i-1).getFailures();
-				Double coverage = testData.get(i-1).getLineCoverage();
-				Long lastExecution = testData.get(i-1).getLastExecuted();
-				Double frequency = testData.get(i-1).getFrequency();
-				Double failFrequency = testData.get(i-1).getFailFrequency();
+				Long testFailures = testData.get(i-1).getFailures() > 0 ? testData.get(i-1).getFailures() : 1L;
+				Double coverage = testData.get(i-1).getLineCoverage() > 0 ? testData.get(i-1).getLineCoverage() : 1.0;
+				Long lastExecution = testData.get(i-1).getLastExecuted() > 0 ? testData.get(i-1).getLastExecuted() : 1L;
+				Double frequency = testData.get(i-1).getFrequency() > 0 ? testData.get(i-1).getFrequency() : 1.0;
+				Double failFrequency = testData.get(i-1).getFailFrequency() > 0 ? testData.get(i-1).getFailFrequency() : 1.0;
 				
 				if (lastExecutionTime.intValue() > time)
 					b = 0.0;

@@ -17,7 +17,10 @@ public abstract class AdaptSorterMeta {
 			Double frequency = (obj.getTotalExecutions().doubleValue() / obj.getToolExecutions().doubleValue());
 			if (isReverse) 
 				frequency = 1.0 / frequency;
-			Double failFrequency = (obj.getHistFailures().doubleValue() / obj.getLastExecution().doubleValue());
+			
+			Double failFrequency = 1.0;
+			if (obj.getTime() > 0)
+				failFrequency = (obj.getHistFailures().doubleValue() / obj.getLastExecution().doubleValue());
 			
 			testData.add( new TestData( 
 					obj.getTime(),
