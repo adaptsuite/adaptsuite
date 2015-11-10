@@ -229,6 +229,11 @@ public final class AdaptSuiteBuilder {
 		return this;
 	}
 	
+	public AdaptSuiteBuilder mili(int miliseconds) {
+		this.availableTimeMili = miliseconds;
+		return this;
+	}
+	
 	
 	public static String getErrorConstant() {
 		return RelevanceConstants.ERROR_RELEVANCE;

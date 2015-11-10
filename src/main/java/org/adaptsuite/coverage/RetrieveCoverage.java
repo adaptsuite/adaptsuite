@@ -25,9 +25,7 @@ public class RetrieveCoverage {
 
 			doc = Jsoup.parse(file, "UTF-8", "http://"+ testName +".com/");
 	        lineCoverage = searchParam(doc, "Lines");
-	        coverages[0] = 1.0 - (lineCoverage[0]/lineCoverage[1]);;
-	        reachedClasses = searchParam(doc, "Classes");
-	        coverages[1] = reachedClasses[1] - reachedClasses[0]; 
+	        coverages[0] = 1.0 - (lineCoverage[0]/lineCoverage[1]); 
 	        
 	        
 		} catch (FileNotFoundException e) {
