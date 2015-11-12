@@ -28,7 +28,8 @@ public abstract class AdaptSorterMeta {
 					obj.getCoverage() * this.importance.getLineCoverageImportance(), 
 					obj.getLastExecution() * this.importance.getFailureIportance(),
 					frequency * this.importance.getFrequencyImportance(),
-					failFrequency * this.importance.getFailFrequencyImportance())
+					failFrequency * this.importance.getFailFrequencyImportance(),
+					obj.getName())
 			);
 		}
 	}

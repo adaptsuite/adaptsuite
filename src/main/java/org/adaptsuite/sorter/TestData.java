@@ -9,6 +9,7 @@ public class TestData {
 	private Double frequency;
 	private Double failFrequency;
 	private Double testValue;
+	private String name;
 
 	public TestData(
 			Long time, 
@@ -16,13 +17,15 @@ public class TestData {
 			Double coverage, 
 			Long lastExecution, 
 			Double frequency, 
-			Double failFrequency) {
+			Double failFrequency,
+			String name) {
 		this.lastExecutionTime = time;
 		this.failures = failures;
 		this.lineCoverage = coverage;
 		this.lastExecuted = lastExecution;
 		this.frequency = frequency;
 		this.failFrequency = failFrequency;
+		this.name = name;
 	}
 	
 	public void setTestValue(Double testValue) {
@@ -55,6 +58,10 @@ public class TestData {
 	
 	public Double getTestValue() {
 		return this.testValue;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 }

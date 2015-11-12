@@ -1,13 +1,14 @@
 package main.java.org.adaptsuite.sorter;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class GlottonyAdaptSorterBuilder {
-	private boolean[] chosenTests;
+	private List<String> chosenTests;
 	
-	public boolean[] findTests (List<TestData> testData, int queueSize, Long maxTime) {
-		chosenTests = new boolean[queueSize];
+	public List<String> findTests (List<TestData> testData, int queueSize, Long maxTime) {
+		chosenTests = new ArrayList<String>();
 		Long totalTime = 0L;
 		
 		for (TestData obj : testData) {
@@ -16,10 +17,9 @@ public class GlottonyAdaptSorterBuilder {
 			Double coverage = obj.getLineCoverage() > 0 ? obj.getLineCoverage() : 1.0;
 			Double lastExecuted = obj.getLastExecuted() > 0 ? obj.getLastExecuted().doubleValue() : 1.0;
 			Double frequency = obj.getFrequency() > 0 ? obj.getFrequency() : 1.0;
-			Double failFrequency = obj.getFailFrequency() > 0 ? obj.getFailFrequency() : 1.0;
 			
 			
-			Double value = failures * coverage * lastExecuted * frequency * failFrequency;
+			Double value = failures * coverage * lastExecuted * frequency;
 			
 			obj.setTestValue(value);
 		}
@@ -33,7 +33,7 @@ public class GlottonyAdaptSorterBuilder {
 		
 		for (int i=0; i < queueSize-1; i++) {
 			if(testData.get(i).getLastExecutionTime() + totalTime < maxTime) {
-				chosenTests[i] = true;
+				chosenTests.add(testData.get(i).getName());
 				totalTime += testData.get(i).getLastExecutionTime();
 			}
 		}

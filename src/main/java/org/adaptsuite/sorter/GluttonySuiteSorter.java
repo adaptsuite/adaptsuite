@@ -1,12 +1,13 @@
 package main.java.org.adaptsuite.sorter;
 
+import java.util.List;
 import java.util.Queue;
 
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 
 public class GluttonySuiteSorter extends AdaptSorterMeta {
 	
-	public boolean[] chooseTests (
+	public List<String> chooseTests (
 			Queue<IntelliTestAdapter> testQueue, 
 			Long maxTime, 
 			Long[] importance, 

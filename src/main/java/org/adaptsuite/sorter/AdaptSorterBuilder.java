@@ -41,7 +41,7 @@ public class AdaptSorterBuilder {
 					b = 0.0;
 				else
 					b = knaspackTabble[i-1][time - lastExecutionTime.intValue()] + 
-					( testFailures.doubleValue() * coverage * lastExecution.doubleValue() * frequency  * failFrequency);
+					( testFailures.doubleValue() * coverage * lastExecution.doubleValue() * frequency);
 				
 				knaspackTabble[i][time] = Max(a, b);
 			}

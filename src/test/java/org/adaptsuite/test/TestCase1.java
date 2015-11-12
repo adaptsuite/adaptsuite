@@ -1,6 +1,8 @@
 package test.java.org.adaptsuite.test;
 
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class TestCase1 {

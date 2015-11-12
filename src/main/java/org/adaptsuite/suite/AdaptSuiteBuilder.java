@@ -2,6 +2,7 @@ package main.java.org.adaptsuite.suite;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
@@ -12,6 +13,7 @@ import junit.framework.TestSuite;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
 import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
 import main.java.org.adaptsuite.sorter.SuiteSorter;
+import main.java.org.adaptsuite.sorter.TestData;
 import main.java.org.adaptsuite.sorter.GluttonySuiteSorter;
 import main.java.org.adaptsuite.sorter.RandomSuiteSorter;
 import main.java.org.adaptsuite.sorter.RelevanceConstants;
@@ -161,12 +163,16 @@ public final class AdaptSuiteBuilder {
 	}
 	
 	private void addGluttonyTests(boolean isReverse) {
-		boolean[] chosenTests = new GluttonySuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
+		List<String> chosenTests = new GluttonySuiteSorter().chooseTests(this.testQueue, this.availableTimeMili, 
 				this.importance, isReverse);
-		int i = 0;
-		for (IntelliTestAdapter obj : this.testQueue) {
-			if(chosenTests[i++])
-				this.testsToRun.add(obj);
+		
+		for (int j = 0; j < chosenTests.size(); j++) {
+			for (IntelliTestAdapter obj : this.testQueue) {
+				if(chosenTests.get(j).equals(obj.getName())) {
+					this.testsToRun.add(obj);
+					continue;
+				}
+			}
 		}
 	}
 	
