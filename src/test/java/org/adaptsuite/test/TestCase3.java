@@ -3,13 +3,13 @@ package test.java.org.adaptsuite.test;
 
 import org.junit.Test;
 
-public class TestCase2Sec {
+public class TestCase3 {
 	
 	@Test
 	public void testTwo() throws InterruptedException{
-		System.out.println("Testing two...");
-		Thread.sleep(1900);
-		System.out.println("Tested two!");
+		System.out.println("Testing 0.750sec...");
+		Thread.sleep(650);
+		System.out.println("Tested 0.750sec!");
 	}
 	
 	

@@ -11,8 +11,6 @@ import org.junit.runners.AllTests;
 @RunWith(AllTests.class)
 public class Seconds5Suite {
 	public static TestSuite suite() {
-		Map <String, Long> relevance = new HashMap<String, Long>();
-		relevance.put(AdaptSuiteBuilder.getErrorConstant(), 2L);
-		return new AdaptSuiteBuilder().sec(5).build(relevance);
+		return new AdaptSuiteBuilder().mili(2000).gluttonyBuildReverse();
 	}
 }
