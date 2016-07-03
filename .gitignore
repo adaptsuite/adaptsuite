@@ -11,3 +11,4 @@ junit4-4.8.2.jar.zip
 opencsv-3.5.jar
 *.swp
 
+/target/
