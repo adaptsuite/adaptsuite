@@ -1,16 +1,17 @@
-package main.java.org.adaptsuite.coverage;
+package org.adaptsuite.coverage;
 
 import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 
-import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
+import org.adaptsuite.adapter.IntelliTestAdapter;
 
 public class RetrieveCSVData {
 	private final String FILE_NAME = "adaptsuite.csv";

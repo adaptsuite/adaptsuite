@@ -1,4 +1,4 @@
-package main.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
 import java.util.List;
 import java.util.Random;

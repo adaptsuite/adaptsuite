@@ -1,4 +1,4 @@
-package main.java.org.adaptsuite.prop;
+package org.adaptsuite.prop;
 
 import java.io.File;
 import java.io.FileReader;

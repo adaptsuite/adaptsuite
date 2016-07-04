@@ -1,4 +1,4 @@
-package main.java.org.adaptsuite.coverage;
+package org.adaptsuite.coverage;
 
 import java.io.File;
 import java.io.FileNotFoundException;

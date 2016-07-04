@@ -1,4 +1,4 @@
-package main.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
 public class DegreeOfImportance {
 	

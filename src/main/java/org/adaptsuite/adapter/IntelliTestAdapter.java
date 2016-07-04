@@ -1,6 +1,6 @@
-package main.java.org.adaptsuite.adapter;
+package org.adaptsuite.adapter;
 
-import main.java.org.adaptsuite.coverage.RetrieveCoverage;
+import org.adaptsuite.coverage.RetrieveCoverage;
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.TestResult;
 

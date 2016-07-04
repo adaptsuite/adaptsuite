@@ -1,6 +1,6 @@
-package main.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
-public class TestData {
+public class TestData implements Comparable<TestData>{
 
 	private Long lastExecutionTime;
 	private Long failures;
@@ -62,6 +62,10 @@ public class TestData {
 	
 	public String getName() {
 		return this.name;
+	}
+
+	public int compareTo(TestData o) {
+		return (this.getTestValue() < o.getTestValue()) ? 1 : -1;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package main.java.org.adaptsuite.suite;
+package org.adaptsuite.suite;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
@@ -10,14 +10,14 @@ import java.util.Map;
 
 import junit.framework.TestResult;
 import junit.framework.TestSuite;
-import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
-import main.java.org.adaptsuite.adapter.IntelliTestAdapters;
-import main.java.org.adaptsuite.sorter.SuiteSorter;
-import main.java.org.adaptsuite.sorter.TestData;
-import main.java.org.adaptsuite.sorter.GluttonySuiteSorter;
-import main.java.org.adaptsuite.sorter.RandomSuiteSorter;
-import main.java.org.adaptsuite.sorter.RelevanceConstants;
-import main.java.org.adaptsuite.coverage.RetrieveCSVData;
+import org.adaptsuite.adapter.IntelliTestAdapter;
+import org.adaptsuite.adapter.IntelliTestAdapters;
+import org.adaptsuite.sorter.SuiteSorter;
+import org.adaptsuite.sorter.TestData;
+import org.adaptsuite.sorter.GluttonySuiteSorter;
+import org.adaptsuite.sorter.RandomSuiteSorter;
+import org.adaptsuite.sorter.RelevanceConstants;
+import org.adaptsuite.coverage.RetrieveCSVData;
 
 import org.junit.extensions.cpsuite.ClassesFinder;
 import org.junit.extensions.cpsuite.ClasspathFinderFactory;

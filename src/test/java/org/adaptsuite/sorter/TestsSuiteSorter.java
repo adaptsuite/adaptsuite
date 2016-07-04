@@ -1,4 +1,4 @@
-package test.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
 
 import static org.junit.Assert.*;
@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.List;
 
-import main.java.org.adaptsuite.sorter.AdaptSorterBuilder;
-import main.java.org.adaptsuite.sorter.TestData;
+import org.adaptsuite.sorter.AdaptSorterBuilder;
+import org.adaptsuite.sorter.TestData;
 
 
 public class TestsSuiteSorter {

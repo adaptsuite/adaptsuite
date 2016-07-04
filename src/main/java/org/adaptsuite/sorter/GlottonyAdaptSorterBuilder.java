@@ -1,6 +1,7 @@
-package main.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,12 +25,7 @@ public class GlottonyAdaptSorterBuilder {
 			obj.setTestValue(value);
 		}
 		
-		Comparator<TestData> comparator = new Comparator<TestData> () {
-			public int compare(TestData a, TestData b) {
-				return (a.getTestValue() < b.getTestValue()) ? 1 : -1;
-			}
-		};
-		testData.sort(comparator);
+		Collections.sort(testData);
 		
 		for (int i=0; i < queueSize-1; i++) {
 			if(testData.get(i).getLastExecutionTime() + totalTime < maxTime) {

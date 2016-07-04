@@ -1,9 +1,9 @@
-package main.java.org.adaptsuite.sorter;
+package org.adaptsuite.sorter;
 
 
 import java.util.Queue;
 
-import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
+import org.adaptsuite.adapter.IntelliTestAdapter;
 
 public class SuiteSorter extends AdaptSorterMeta{
 

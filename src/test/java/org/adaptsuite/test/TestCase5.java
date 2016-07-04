@@ -1,4 +1,4 @@
-package test.java.org.adaptsuite.test;
+package org.adaptsuite.test;
 
 
 import org.junit.Test;

@@ -1,9 +1,9 @@
-package main.java.org.adaptsuite.adapter;
+package org.adaptsuite.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.org.adaptsuite.coverage.RetrieveCSVData;
+import org.adaptsuite.coverage.RetrieveCSVData;
 
 @SuppressWarnings("serial")
 public class IntelliTestAdapters extends ArrayList<IntelliTestAdapter>{

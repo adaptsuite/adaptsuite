@@ -1,8 +1,8 @@
-package main.java.org.adaptsuite.suite;
+package org.adaptsuite.suite;
 
 import java.util.Comparator;
 
-import main.java.org.adaptsuite.adapter.IntelliTestAdapter;
+import org.adaptsuite.adapter.IntelliTestAdapter;
 
 public class AdaptSorter implements Comparator<IntelliTestAdapter>{	
 
